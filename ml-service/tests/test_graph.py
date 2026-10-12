@@ -215,3 +215,4 @@ def test_demo_student_1_arrays_root_gap():
     assert len(gaps_bt) >= 1
     root_ids = [g["root_gap_id"] for g in gaps_bt]
     assert 7 in root_ids  # Arrays must be diagnosed as root gap
+

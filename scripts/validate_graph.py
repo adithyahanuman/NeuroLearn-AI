@@ -168,3 +168,4 @@ def validate_knowledge_graph(data_dir: Path = None) -> bool:
 if __name__ == "__main__":
     success = validate_knowledge_graph()
     sys.exit(0 if success else 1)
+

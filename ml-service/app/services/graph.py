@@ -252,3 +252,4 @@ def get_graph_service() -> KnowledgeGraphService:
     if _default_graph_service is None:
         _default_graph_service = KnowledgeGraphService()
     return _default_graph_service
+

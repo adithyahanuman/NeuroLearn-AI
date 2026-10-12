@@ -72,17 +72,21 @@ Every task you need to do, in order, as tick boxes. Do not start a phase until t
 
 ## Phase 2: Database (2 days)
 
-- [ ] Write db/migrations/001\_init.sql: enums, all tables, foreign keys, check constraints, client\_attempt\_id and root\_gaps columns
-- [ ] Write db/migrations/002\_indexes.sql: the indexes from Section 3, the one-active-recommendation partial unique index, and the predictions index for DISTINCT ON
-- [ ] Write scripts/reset.sh to drop, recreate and apply every migration
-- [ ] Write db/seed/seed.py: load concepts, prerequisites and resources
-- [ ] Seed the faculty user and the three cohorts
-- [ ] Seed one user and one student row per generated student, with one shared pre-computed password hash
-- [ ] Seed the 5 demo students and the faculty user with real passwords hashed with bcrypt cost 12
-- [ ] Load attempts.csv with COPY
-- [ ] Write scripts/seed.sh: generate the CSVs if missing, then run seed.py
-- [ ] Run the sanity queries: 38 concepts, 300 students, no student without a user, no edge pointing to a missing concept
-- [ ] Time it: docker compose down -v, up -d db, reset, seed
+- [x] Write db/migrations/001\_init.sql: enums, all tables, foreign keys, check constraints, client\_attempt\_id and root\_gaps columns
+- [x] Write db/migrations/002\_indexes.sql: the indexes from Section 3, the one-active-recommendation partial unique index, and the predictions index for DISTINCT ON
+- [x] Write scripts/reset.sh to drop, recreate and apply every migration
+- [x] Write db/seed/seed.py: load concepts, prerequisites and resources
+- [x] Seed the faculty user and the three cohorts
+  - Faculty: faculty@neurolearn.ai (password 'demo', bcrypt cost 12), Cohort A, Cohort B, Cohort C
+- [x] Seed one user and one student row per generated student, with one shared pre-computed password hash
+- [x] Seed the 5 demo students and the faculty user with real passwords hashed with bcrypt cost 12
+- [x] Load attempts.csv with COPY
+  - 27,744 attempts loaded via PostgreSQL COPY in ~2.5s
+- [x] Write scripts/seed.sh: generate the CSVs if missing, then run seed.py
+- [x] Run the sanity queries: 38 concepts, 300 students, no student without a user, no edge pointing to a missing concept
+  - 38 concepts, 64 prereqs, 76 resources, 300 students, 0 orphans, 0 broken edges
+- [x] Time it: docker compose down -v, up -d db, reset, seed
+  - Full teardown and rebuild verified in 12.39 seconds (< 60s target)
 
 **Done when:** the whole reset and seed takes under a minute and every sanity query matches. Tag v0.2.
 
