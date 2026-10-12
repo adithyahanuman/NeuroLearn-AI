@@ -1,0 +1,344 @@
+[
+  {
+    "id": 1,
+    "code": "C01",
+    "name": "Variables and Data Types",
+    "description": "Primitive types, variable assignment, type casting, and fundamental memory allocation.",
+    "level": 1,
+    "difficulty": 1,
+    "subject": "Data Structures and Algorithms"
+  },
+  {
+    "id": 2,
+    "code": "C02",
+    "name": "Basic Arithmetic and Logic",
+    "description": "Arithmetic operators, boolean logic, operator precedence, and truth tables.",
+    "level": 1,
+    "difficulty": 1,
+    "subject": "Data Structures and Algorithms"
+  },
+  {
+    "id": 3,
+    "code": "C03",
+    "name": "Conditional Statements",
+    "description": "Branching execution paths using if-else structures, switch blocks, and ternary operators.",
+    "level": 1,
+    "difficulty": 1,
+    "subject": "Data Structures and Algorithms"
+  },
+  {
+    "id": 4,
+    "code": "C04",
+    "name": "Loops and Iteration",
+    "description": "Repetitive execution control using for, while, and do-while loops with break/continue control.",
+    "level": 1,
+    "difficulty": 1,
+    "subject": "Data Structures and Algorithms"
+  },
+  {
+    "id": 5,
+    "code": "C05",
+    "name": "Functions and Scope",
+    "description": "Modular code decomposition, parameter passing, return values, and variable lifetimes.",
+    "level": 1,
+    "difficulty": 2,
+    "subject": "Data Structures and Algorithms"
+  },
+  {
+    "id": 6,
+    "code": "C06",
+    "name": "Memory and Pointers Basics",
+    "description": "Stack versus heap memory architecture, reference semantics, and memory addressing.",
+    "level": 1,
+    "difficulty": 2,
+    "subject": "Data Structures and Algorithms"
+  },
+  {
+    "id": 7,
+    "code": "C07",
+    "name": "Arrays and Memory Contiguity",
+    "description": "Contiguous memory storage, zero-indexed random access, and multi-dimensional grids.",
+    "level": 2,
+    "difficulty": 2,
+    "subject": "Data Structures and Algorithms"
+  },
+  {
+    "id": 8,
+    "code": "C08",
+    "name": "Strings and Character Arrays",
+    "description": "Character encoding, immutable vs mutable string manipulation, and string traversal.",
+    "level": 2,
+    "difficulty": 2,
+    "subject": "Data Structures and Algorithms"
+  },
+  {
+    "id": 9,
+    "code": "C09",
+    "name": "Time and Space Complexity",
+    "description": "Asymptotic analysis, Big-O, Big-Omega, Big-Theta notation, and worst/average case bounds.",
+    "level": 2,
+    "difficulty": 2,
+    "subject": "Data Structures and Algorithms"
+  },
+  {
+    "id": 10,
+    "code": "C10",
+    "name": "Recursion Basics",
+    "description": "Self-referential functions, recursive call stacks, base cases, and recursion trees.",
+    "level": 2,
+    "difficulty": 2,
+    "subject": "Data Structures and Algorithms"
+  },
+  {
+    "id": 11,
+    "code": "C11",
+    "name": "Bit Manipulation",
+    "description": "Bitwise AND, OR, XOR, NOT operations, bit masks, and binary shifts.",
+    "level": 2,
+    "difficulty": 2,
+    "subject": "Data Structures and Algorithms"
+  },
+  {
+    "id": 12,
+    "code": "C12",
+    "name": "Singly Linked Lists",
+    "description": "Dynamic node linking, head pointers, sequential traversal, insertion, and deletion.",
+    "level": 3,
+    "difficulty": 3,
+    "subject": "Data Structures and Algorithms"
+  },
+  {
+    "id": 13,
+    "code": "C13",
+    "name": "Stacks and LIFO Operations",
+    "description": "Last-in First-out collection, push/pop/peek operations, and expression evaluation.",
+    "level": 3,
+    "difficulty": 2,
+    "subject": "Data Structures and Algorithms"
+  },
+  {
+    "id": 14,
+    "code": "C14",
+    "name": "Queues and FIFO Operations",
+    "description": "First-in First-out collection, enqueue/dequeue operations, and circular buffer queues.",
+    "level": 3,
+    "difficulty": 2,
+    "subject": "Data Structures and Algorithms"
+  },
+  {
+    "id": 15,
+    "code": "C15",
+    "name": "Linear and Binary Search",
+    "description": "Linear scanning versus logarithmic divide-and-search over monotonic collections.",
+    "level": 3,
+    "difficulty": 2,
+    "subject": "Data Structures and Algorithms"
+  },
+  {
+    "id": 16,
+    "code": "C16",
+    "name": "Two Pointers and Sliding Window",
+    "description": "Coordinate tracking patterns for sub-arrays, monotonic search, and linear window contraction.",
+    "level": 3,
+    "difficulty": 3,
+    "subject": "Data Structures and Algorithms"
+  },
+  {
+    "id": 17,
+    "code": "C17",
+    "name": "Elementary Sorting Algorithms",
+    "description": "Quadratic sorting routines including bubble sort, selection sort, and insertion sort.",
+    "level": 3,
+    "difficulty": 2,
+    "subject": "Data Structures and Algorithms"
+  },
+  {
+    "id": 18,
+    "code": "C18",
+    "name": "Doubly and Circular Linked Lists",
+    "description": "Bidirectional node pointer links, circular buffer traversal, and edge node handling.",
+    "level": 4,
+    "difficulty": 3,
+    "subject": "Data Structures and Algorithms"
+  },
+  {
+    "id": 19,
+    "code": "C19",
+    "name": "Divide and Conquer",
+    "description": "Recursive subproblem partitioning, independent solutions, and master theorem analysis.",
+    "level": 4,
+    "difficulty": 3,
+    "subject": "Data Structures and Algorithms"
+  },
+  {
+    "id": 20,
+    "code": "C20",
+    "name": "Hash Tables and Hash Maps",
+    "description": "Hashing functions, bucket arrays, collision handling via chaining and open addressing.",
+    "level": 4,
+    "difficulty": 3,
+    "subject": "Data Structures and Algorithms"
+  },
+  {
+    "id": 21,
+    "code": "C21",
+    "name": "Binary Trees and Traversals",
+    "description": "Hierarchical node branching, in-order, pre-order, post-order, and level-order traversal.",
+    "level": 4,
+    "difficulty": 3,
+    "subject": "Data Structures and Algorithms"
+  },
+  {
+    "id": 22,
+    "code": "C22",
+    "name": "Binary Search Trees",
+    "description": "Ordered binary search trees, BST invariant validation, insertion, search, and deletion.",
+    "level": 4,
+    "difficulty": 3,
+    "subject": "Data Structures and Algorithms"
+  },
+  {
+    "id": 23,
+    "code": "C23",
+    "name": "Heaps and Priority Queues",
+    "description": "Complete binary trees as arrays, min-heap and max-heap properties, sift-up, and sift-down.",
+    "level": 4,
+    "difficulty": 3,
+    "subject": "Data Structures and Algorithms"
+  },
+  {
+    "id": 24,
+    "code": "C24",
+    "name": "Graph Representation",
+    "description": "Vertices and edges modeled as adjacency matrices, adjacency lists, and edge arrays.",
+    "level": 4,
+    "difficulty": 3,
+    "subject": "Data Structures and Algorithms"
+  },
+  {
+    "id": 25,
+    "code": "C25",
+    "name": "Merge Sort and Quick Sort",
+    "description": "O(N log N) divide-and-conquer sorting with merge operations and pivot partitioning.",
+    "level": 5,
+    "difficulty": 3,
+    "subject": "Data Structures and Algorithms"
+  },
+  {
+    "id": 26,
+    "code": "C26",
+    "name": "Self-Balancing Binary Trees",
+    "description": "Logarithmic depth guarantee via tree rotations, balance factors, AVL trees, and Red-Black trees.",
+    "level": 5,
+    "difficulty": 4,
+    "subject": "Data Structures and Algorithms"
+  },
+  {
+    "id": 27,
+    "code": "C27",
+    "name": "Tries and Prefix Trees",
+    "description": "Multiway tree structure for efficient dictionary retrieval, prefix search, and autocomplete.",
+    "level": 5,
+    "difficulty": 4,
+    "subject": "Data Structures and Algorithms"
+  },
+  {
+    "id": 28,
+    "code": "C28",
+    "name": "Breadth-First Search",
+    "description": "Queue-driven level-by-level graph traversal, shortest paths in unweighted graphs.",
+    "level": 5,
+    "difficulty": 3,
+    "subject": "Data Structures and Algorithms"
+  },
+  {
+    "id": 29,
+    "code": "C29",
+    "name": "Depth-First Search",
+    "description": "Stack-driven graph traversal, cycle detection, connected components, and pathfinding.",
+    "level": 5,
+    "difficulty": 3,
+    "subject": "Data Structures and Algorithms"
+  },
+  {
+    "id": 30,
+    "code": "C30",
+    "name": "Greedy Algorithms",
+    "description": "Locally optimal choice heuristics, greedy choice property, and optimal substructure.",
+    "level": 5,
+    "difficulty": 3,
+    "subject": "Data Structures and Algorithms"
+  },
+  {
+    "id": 31,
+    "code": "C31",
+    "name": "Disjoint Set Union",
+    "description": "Disjoint set union-find, path compression, and union by rank optimizations.",
+    "level": 5,
+    "difficulty": 4,
+    "subject": "Data Structures and Algorithms"
+  },
+  {
+    "id": 32,
+    "code": "C32",
+    "name": "Dynamic Programming Fundamentals",
+    "description": "Overlapping subproblems, optimal substructure, top-down memoization vs bottom-up tabulation.",
+    "level": 5,
+    "difficulty": 4,
+    "subject": "Data Structures and Algorithms"
+  },
+  {
+    "id": 33,
+    "code": "C33",
+    "name": "Topological Sorting and DAGs",
+    "description": "Linear ordering of vertices in directed acyclic graphs using Kahn's algorithm and DFS.",
+    "level": 6,
+    "difficulty": 4,
+    "subject": "Data Structures and Algorithms"
+  },
+  {
+    "id": 34,
+    "code": "C34",
+    "name": "Minimum Spanning Trees",
+    "description": "Kruskal's and Prim's algorithms for minimum weight spanning tree discovery.",
+    "level": 6,
+    "difficulty": 4,
+    "subject": "Data Structures and Algorithms"
+  },
+  {
+    "id": 35,
+    "code": "C35",
+    "name": "Shortest Path Algorithms",
+    "description": "Dijkstra's priority-queue algorithm and Bellman-Ford negative cycle relaxation.",
+    "level": 6,
+    "difficulty": 4,
+    "subject": "Data Structures and Algorithms"
+  },
+  {
+    "id": 36,
+    "code": "C36",
+    "name": "1D Dynamic Programming",
+    "description": "Linear state transition equations, 0/1 knapsack, longest increasing subsequence, and coin change.",
+    "level": 6,
+    "difficulty": 4,
+    "subject": "Data Structures and Algorithms"
+  },
+  {
+    "id": 37,
+    "code": "C37",
+    "name": "2D and Grid Dynamic Programming",
+    "description": "Matrix state representations, edit distance, longest common subsequence, and grid paths.",
+    "level": 6,
+    "difficulty": 5,
+    "subject": "Data Structures and Algorithms"
+  },
+  {
+    "id": 38,
+    "code": "C38",
+    "name": "Backtracking and State Space Search",
+    "description": "Recursive state space exploration, constraint satisfaction, N-Queens, and Sudoku solving.",
+    "level": 6,
+    "difficulty": 4,
+    "subject": "Data Structures and Algorithms"
+  }
+]

@@ -1,0 +1,115 @@
+[
+  { "id": 1, "concept_id": 1, "title": "Variables and Data Types in Python & C++", "type": "article", "url": "https://www.geeksforgeeks.org/variables-data-types-python/", "difficulty": 1, "est_minutes": 20 },
+  { "id": 2, "concept_id": 1, "title": "Data Types and Variable Declarations Practice", "type": "practice", "url": "https://www.hackerrank.com/challenges/c-tutorial-basic-data-types/problem", "difficulty": 1, "est_minutes": 25 },
+
+  { "id": 3, "concept_id": 2, "title": "Operators and Boolean Logic Tutorial", "type": "article", "url": "https://www.geeksforgeeks.org/basic-operators-in-python/", "difficulty": 1, "est_minutes": 15 },
+  { "id": 4, "concept_id": 2, "title": "Arithmetic Operators and Logic Exercises", "type": "practice", "url": "https://www.hackerrank.com/challenges/python-arithmetic-operators/problem", "difficulty": 1, "est_minutes": 20 },
+
+  { "id": 5, "concept_id": 3, "title": "Control Flow: If-Else and Conditionals", "type": "article", "url": "https://www.geeksforgeeks.org/decision-making-python-if-if-else-nested-if-elif/", "difficulty": 1, "est_minutes": 20 },
+  { "id": 6, "concept_id": 3, "title": "Conditional Statements Interactive Practice", "type": "practice", "url": "https://www.hackerrank.com/challenges/c-tutorial-conditional-if-else/problem", "difficulty": 1, "est_minutes": 25 },
+
+  { "id": 7, "concept_id": 4, "title": "Loops and Iteration Mastery Guide", "type": "video", "url": "https://www.youtube.com/watch?v=6iF8Xb7Z3wQ", "difficulty": 1, "est_minutes": 25 },
+  { "id": 8, "concept_id": 4, "title": "Looping and Patterns Practice", "type": "practice", "url": "https://www.hackerrank.com/challenges/c-tutorial-for-loop/problem", "difficulty": 1, "est_minutes": 30 },
+
+  { "id": 9, "concept_id": 5, "title": "Functions, Scope, and Lifetime Explained", "type": "article", "url": "https://www.geeksforgeeks.org/functions-in-python/", "difficulty": 2, "est_minutes": 25 },
+  { "id": 10, "concept_id": 5, "title": "Function Call Decomposition Challenges", "type": "practice", "url": "https://www.hackerrank.com/challenges/c-tutorial-functions/problem", "difficulty": 2, "est_minutes": 30 },
+
+  { "id": 11, "concept_id": 6, "title": "Pointers and Memory Architecture Fundamentals", "type": "video", "url": "https://www.youtube.com/watch?v=zuegQmMdy8M", "difficulty": 2, "est_minutes": 30 },
+  { "id": 12, "concept_id": 6, "title": "Pointers and Addressing Hands-on Practice", "type": "practice", "url": "https://www.hackerrank.com/challenges/c-tutorial-pointer/problem", "difficulty": 2, "est_minutes": 35 },
+
+  { "id": 13, "concept_id": 7, "title": "Arrays Data Structure and Memory Contiguity", "type": "article", "url": "https://www.geeksforgeeks.org/array-data-structure/", "difficulty": 2, "est_minutes": 30 },
+  { "id": 14, "concept_id": 7, "title": "Array Reversal and Insertion Practice", "type": "practice", "url": "https://www.hackerrank.com/challenges/arrays-introduction/problem", "difficulty": 2, "est_minutes": 30 },
+
+  { "id": 15, "concept_id": 8, "title": "Strings and Character Manipulation In-Depth", "type": "article", "url": "https://www.geeksforgeeks.org/c-plus-plus-strings/", "difficulty": 2, "est_minutes": 25 },
+  { "id": 16, "concept_id": 8, "title": "String Processing & Palindrome Verification", "type": "practice", "url": "https://leetcode.com/problems/valid-palindrome/", "difficulty": 2, "est_minutes": 25 },
+
+  { "id": 17, "concept_id": 9, "title": "Big O Notation and Algorithm Analysis", "type": "video", "url": "https://www.youtube.com/watch?v=D6xkbGLQesk", "difficulty": 2, "est_minutes": 35 },
+  { "id": 18, "concept_id": 9, "title": "Asymptotic Analysis Problem Set", "type": "practice", "url": "https://www.geeksforgeeks.org/practice-questions-time-complexity-analysis/", "difficulty": 2, "est_minutes": 30 },
+
+  { "id": 19, "concept_id": 10, "title": "Recursion for Beginners: Call Stack & Base Cases", "type": "video", "url": "https://www.youtube.com/watch?v=Mv9NEx87qEg", "difficulty": 2, "est_minutes": 30 },
+  { "id": 20, "concept_id": 10, "title": "Recursive Fibonacci and Factorial Practice", "type": "practice", "url": "https://leetcode.com/problems/fibonacci-number/", "difficulty": 2, "est_minutes": 25 },
+
+  { "id": 21, "concept_id": 11, "title": "Bitwise Operations & Bit Masking Guide", "type": "article", "url": "https://www.geeksforgeeks.org/bitwise-operators-in-c-cpp/", "difficulty": 2, "est_minutes": 25 },
+  { "id": 22, "concept_id": 11, "title": "Number of 1 Bits (Hamming Weight)", "type": "practice", "url": "https://leetcode.com/problems/number-of-1-bits/", "difficulty": 2, "est_minutes": 25 },
+
+  { "id": 23, "concept_id": 12, "title": "Singly Linked List Implementation & Operations", "type": "article", "url": "https://www.geeksforgeeks.org/singly-linked-list-tutorial/", "difficulty": 3, "est_minutes": 35 },
+  { "id": 24, "concept_id": 12, "title": "Reverse a Linked List Practice", "type": "practice", "url": "https://leetcode.com/problems/reverse-linked-list/", "difficulty": 3, "est_minutes": 30 },
+
+  { "id": 25, "concept_id": 13, "title": "Stacks: LIFO Concept and Array/List Backing", "type": "video", "url": "https://www.youtube.com/watch?v=F1F2imiOJfk", "difficulty": 2, "est_minutes": 30 },
+  { "id": 26, "concept_id": 13, "title": "Valid Parentheses Using Stacks", "type": "practice", "url": "https://leetcode.com/problems/valid-parentheses/", "difficulty": 2, "est_minutes": 25 },
+
+  { "id": 27, "concept_id": 14, "title": "Queue Data Structure & Circular Buffer", "type": "article", "url": "https://www.geeksforgeeks.org/queue-data-structure/", "difficulty": 2, "est_minutes": 25 },
+  { "id": 28, "concept_id": 14, "title": "Implement Queue using Stacks", "type": "practice", "url": "https://leetcode.com/problems/implement-queue-using-stacks/", "difficulty": 2, "est_minutes": 30 },
+
+  { "id": 29, "concept_id": 15, "title": "Binary Search Algorithm Deep Dive", "type": "video", "url": "https://www.youtube.com/watch?v=P3YID7liBug", "difficulty": 2, "est_minutes": 30 },
+  { "id": 30, "concept_id": 15, "title": "Classic Binary Search Practice", "type": "practice", "url": "https://leetcode.com/problems/binary-search/", "difficulty": 2, "est_minutes": 25 },
+
+  { "id": 31, "concept_id": 16, "title": "Two Pointers Technique and Sliding Window Patterns", "type": "article", "url": "https://www.geeksforgeeks.org/two-pointers-technique/", "difficulty": 3, "est_minutes": 35 },
+  { "id": 32, "concept_id": 16, "title": "Two Sum II - Input Array Is Sorted", "type": "practice", "url": "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/", "difficulty": 3, "est_minutes": 30 },
+
+  { "id": 33, "concept_id": 17, "title": "Sorting Algorithms: Bubble, Selection, and Insertion", "type": "video", "url": "https://www.youtube.com/watch?v=kPRA0W1kECg", "difficulty": 2, "est_minutes": 35 },
+  { "id": 34, "concept_id": 17, "title": "Insertion Sort Part 1 Practice", "type": "practice", "url": "https://www.hackerrank.com/challenges/insertionsort1/problem", "difficulty": 2, "est_minutes": 30 },
+
+  { "id": 35, "concept_id": 18, "title": "Doubly Linked List Structure and Circular Traversal", "type": "article", "url": "https://www.geeksforgeeks.org/doubly-linked-list-tutorial/", "difficulty": 3, "est_minutes": 35 },
+  { "id": 36, "concept_id": 18, "title": "Reverse a Doubly Linked List", "type": "practice", "url": "https://www.hackerrank.com/challenges/reverse-a-doubly-linked-list/problem", "difficulty": 3, "est_minutes": 30 },
+
+  { "id": 37, "concept_id": 19, "title": "Divide and Conquer Paradigms & Recurrence Relations", "type": "article", "url": "https://www.geeksforgeeks.org/divide-and-conquer-algorithm-introduction/", "difficulty": 3, "est_minutes": 35 },
+  { "id": 38, "concept_id": 19, "title": "Maximum Subarray Problem (Divide and Conquer)", "type": "practice", "url": "https://leetcode.com/problems/maximum-subarray/", "difficulty": 3, "est_minutes": 35 },
+
+  { "id": 39, "concept_id": 20, "title": "Hash Tables, Hash Functions, and Collision Resolution", "type": "video", "url": "https://www.youtube.com/watch?v=shs0KM3wKv8", "difficulty": 3, "est_minutes": 35 },
+  { "id": 40, "concept_id": 20, "title": "Two Sum Problem Using Hash Maps", "type": "practice", "url": "https://leetcode.com/problems/two-sum/", "difficulty": 3, "est_minutes": 25 },
+
+  { "id": 41, "concept_id": 21, "title": "Binary Tree Representation and Recursive Traversals", "type": "video", "url": "https://www.youtube.com/watch?v=fAAZixBzIAI", "difficulty": 3, "est_minutes": 40 },
+  { "id": 42, "concept_id": 21, "title": "Binary Tree Inorder Traversal Practice", "type": "practice", "url": "https://leetcode.com/problems/binary-tree-inorder-traversal/", "difficulty": 3, "est_minutes": 30 },
+
+  { "id": 43, "concept_id": 22, "title": "Binary Search Tree Operations and Validations", "type": "article", "url": "https://www.geeksforgeeks.org/binary-search-tree-data-structure/", "difficulty": 3, "est_minutes": 35 },
+  { "id": 44, "concept_id": 22, "title": "Validate Binary Search Tree", "type": "practice", "url": "https://leetcode.com/problems/validate-binary-search-tree/", "difficulty": 3, "est_minutes": 35 },
+
+  { "id": 45, "concept_id": 23, "title": "Binary Heaps and Priority Queues Complete Guide", "type": "video", "url": "https://www.youtube.com/watch?v=t0Cq6tVNRBA", "difficulty": 3, "est_minutes": 40 },
+  { "id": 46, "concept_id": 23, "title": "Kth Largest Element in an Array", "type": "practice", "url": "https://leetcode.com/problems/kth-largest-element-in-an-array/", "difficulty": 3, "est_minutes": 30 },
+
+  { "id": 47, "concept_id": 24, "title": "Graph Representations: Adjacency List & Matrix", "type": "article", "url": "https://www.geeksforgeeks.org/graph-and-its-representations/", "difficulty": 3, "est_minutes": 30 },
+  { "id": 48, "concept_id": 24, "title": "Find Center of Star Graph", "type": "practice", "url": "https://leetcode.com/problems/find-center-of-star-graph/", "difficulty": 3, "est_minutes": 20 },
+
+  { "id": 49, "concept_id": 25, "title": "Merge Sort and Quick Sort Mechanics & Complexity", "type": "video", "url": "https://www.youtube.com/watch?v=4VqmGXwpLqc", "difficulty": 3, "est_minutes": 40 },
+  { "id": 50, "concept_id": 25, "title": "Sort an Array Using Divide and Conquer", "type": "practice", "url": "https://leetcode.com/problems/sort-an-array/", "difficulty": 3, "est_minutes": 35 },
+
+  { "id": 51, "concept_id": 26, "title": "AVL Trees and Tree Rotations Tutorial", "type": "article", "url": "https://www.geeksforgeeks.org/avl-tree-set-1-insertion/", "difficulty": 4, "est_minutes": 45 },
+  { "id": 52, "concept_id": 26, "title": "Balance a Binary Search Tree", "type": "practice", "url": "https://leetcode.com/problems/balance-a-binary-search-tree/", "difficulty": 4, "est_minutes": 40 },
+
+  { "id": 53, "concept_id": 27, "title": "Trie (Prefix Tree) Implementation and Applications", "type": "video", "url": "https://www.youtube.com/watch?v=zIjfhVPRZCg", "difficulty": 4, "est_minutes": 35 },
+  { "id": 54, "concept_id": 27, "title": "Implement Trie (Prefix Tree)", "type": "practice", "url": "https://leetcode.com/problems/implement-trie-prefix-tree/", "difficulty": 4, "est_minutes": 35 },
+
+  { "id": 55, "concept_id": 28, "title": "Breadth First Search (BFS) on Graphs", "type": "video", "url": "https://www.youtube.com/watch?v=oDqjPvD54Ss", "difficulty": 3, "est_minutes": 35 },
+  { "id": 56, "concept_id": 28, "title": "Rotting Oranges (BFS Shortest Path on Grid)", "type": "practice", "url": "https://leetcode.com/problems/rotting-oranges/", "difficulty": 3, "est_minutes": 35 },
+
+  { "id": 57, "concept_id": 29, "title": "Depth First Search (DFS) on Graphs", "type": "video", "url": "https://www.youtube.com/watch?v=7fujbpJ0LB4", "difficulty": 3, "est_minutes": 35 },
+  { "id": 58, "concept_id": 29, "title": "Number of Islands (DFS Traversal)", "type": "practice", "url": "https://leetcode.com/problems/number-of-islands/", "difficulty": 3, "est_minutes": 35 },
+
+  { "id": 59, "concept_id": 30, "title": "Greedy Algorithms and Interval Scheduling", "type": "article", "url": "https://www.geeksforgeeks.org/greedy-algorithms/", "difficulty": 3, "est_minutes": 35 },
+  { "id": 60, "concept_id": 30, "title": "Non-overlapping Intervals (Greedy Choice)", "type": "practice", "url": "https://leetcode.com/problems/non-overlapping-intervals/", "difficulty": 3, "est_minutes": 35 },
+
+  { "id": 61, "concept_id": 31, "title": "Disjoint Set Union (Union-Find) with Rank & Compression", "type": "video", "url": "https://www.youtube.com/watch?v=ayW5B2W9hfo", "difficulty": 4, "est_minutes": 40 },
+  { "id": 62, "concept_id": 31, "title": "Redundant Connection (Union-Find)", "type": "practice", "url": "https://leetcode.com/problems/redundant-connection/", "difficulty": 4, "est_minutes": 35 },
+
+  { "id": 63, "concept_id": 32, "title": "Dynamic Programming: Memoization vs Tabulation", "type": "video", "url": "https://www.youtube.com/watch?v=oBt53YbR9Kk", "difficulty": 4, "est_minutes": 45 },
+  { "id": 64, "concept_id": 32, "title": "Climbing Stairs (DP Base Problem)", "type": "practice", "url": "https://leetcode.com/problems/climbing-stairs/", "difficulty": 4, "est_minutes": 25 },
+
+  { "id": 65, "concept_id": 33, "title": "Topological Sort (Kahn's Algorithm & DFS)", "type": "article", "url": "https://www.geeksforgeeks.org/topological-sorting/", "difficulty": 4, "est_minutes": 40 },
+  { "id": 66, "concept_id": 33, "title": "Course Schedule II (Topological Ordering)", "type": "practice", "url": "https://leetcode.com/problems/course-schedule-ii/", "difficulty": 4, "est_minutes": 40 },
+
+  { "id": 67, "concept_id": 34, "title": "Minimum Spanning Tree: Kruskal and Prim Algorithms", "type": "video", "url": "https://www.youtube.com/watch?v=jsmMtJhmjwY", "difficulty": 4, "est_minutes": 45 },
+  { "id": 68, "concept_id": 34, "title": "Min Cost to Connect All Points", "type": "practice", "url": "https://leetcode.com/problems/min-cost-to-connect-all-points/", "difficulty": 4, "est_minutes": 40 },
+
+  { "id": 69, "concept_id": 35, "title": "Dijkstra's Shortest Path Algorithm with Heaps", "type": "video", "url": "https://www.youtube.com/watch?v=EFg3u_E6eHU", "difficulty": 4, "est_minutes": 45 },
+  { "id": 70, "concept_id": 35, "title": "Network Delay Time (Dijkstra Implementation)", "type": "practice", "url": "https://leetcode.com/problems/network-delay-time/", "difficulty": 4, "est_minutes": 40 },
+
+  { "id": 71, "concept_id": 36, "title": "1D Dynamic Programming: Knapsack & Subsequences", "type": "article", "url": "https://www.geeksforgeeks.org/0-1-knapsack-problem-dp-10/", "difficulty": 4, "est_minutes": 45 },
+  { "id": 72, "concept_id": 36, "title": "Coin Change Problem (1D Tabulation)", "type": "practice", "url": "https://leetcode.com/problems/coin-change/", "difficulty": 4, "est_minutes": 35 },
+
+  { "id": 73, "concept_id": 37, "title": "2D Dynamic Programming: Grid Paths & LCS", "type": "article", "url": "https://www.geeksforgeeks.org/longest-common-subsequence-dp-4/", "difficulty": 5, "est_minutes": 50 },
+  { "id": 74, "concept_id": 37, "title": "Unique Paths II (Grid Dynamic Programming)", "type": "practice", "url": "https://leetcode.com/problems/unique-paths-ii/", "difficulty": 5, "est_minutes": 40 },
+
+  { "id": 75, "concept_id": 38, "title": "Backtracking Algorithm: State-Space Pruning", "type": "video", "url": "https://www.youtube.com/watch?v=DKCbsiDBN6c", "difficulty": 4, "est_minutes": 45 },
+  { "id": 76, "concept_id": 38, "title": "N-Queens Puzzle (Backtracking Classic)", "type": "practice", "url": "https://leetcode.com/problems/n-queens/", "difficulty": 4, "est_minutes": 50 }
+]

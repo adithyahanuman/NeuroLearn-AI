@@ -43,27 +43,30 @@ Every task you need to do, in order, as tick boxes. Do not start a phase until t
 
 **Concepts**
 
-- [ ] Copy the 38 concepts from Section 18 into a spreadsheet: code, name, level, difficulty, description, prerequisites
-- [ ] Draw the graph on paper and check that every level 2 or higher concept has parents and nothing is isolated
-- [ ] Write a one line description for each concept
+- [x] Copy the 38 concepts from Section 18 into a spreadsheet: code, name, level, difficulty, description, prerequisites
+  - data/concepts.csv & data/concepts.json (38 concepts, Levels 1-6)
+- [x] Draw the graph on paper and check that every level 2 or higher concept has parents and nothing is isolated
+- [x] Write a one line description for each concept
 
 **Resources**
 
-- [ ] Find one learning resource (video or article) for every concept
-- [ ] Find one practice resource for every concept
-- [ ] Open every link and check that it loads
-- [ ] Record the type, difficulty (1 to 5) and minutes for every resource
+- [x] Find one learning resource (video or article) for every concept
+- [x] Find one practice resource for every concept
+- [x] Open every link and check that it loads
+- [x] Record the type, difficulty (1 to 5) and minutes for every resource
+  - data/resources.json (76 verified learning and practice resources)
 
 **Data files and scripts**
 
-- [ ] Export data/concepts.json, data/prerequisites.json and data/resources.json
-- [ ] Write scripts/validate\_graph.py: DAG check, unknown ids, 1 to 3 prerequisites, level order, at least 2 resources per concept
-- [ ] Run it until it prints graph ok
-- [ ] Write scripts/build\_graph.py with a --check flag that produces data/graph.json
-- [ ] Implement ml-service/app/services/graph.py: ancestors, descendants, topological order, root\_gaps
-- [ ] Write the root gap tests: chain, diamond, two roots, no gap, target itself weak, and a weak node with a weak ancestor
-- [ ] Run pytest until all six pass
-- [ ] Make CI run both graph scripts and go green on a pull request
+- [x] Export data/concepts.json, data/prerequisites.json and data/resources.json
+- [x] Write scripts/validate\_graph.py: DAG check, unknown ids, 1 to 3 prerequisites, level order, at least 2 resources per concept
+- [x] Run it until it prints graph ok
+- [x] Write scripts/build\_graph.py with a --check flag that produces data/graph.json
+- [x] Implement ml-service/app/services/graph.py: ancestors, descendants, topological order, root\_gaps
+- [x] Write the root gap tests: chain, diamond, two roots, no gap, target itself weak, and a weak node with a weak ancestor
+- [x] Run pytest until all six pass
+  - 8/8 tests passed in ml-service/tests/test_graph.py
+- [x] Make CI run both graph scripts and go green on a pull request
 
 **Done when:** validation passes, root gap tests pass, graph.json is committed and CI is green. Tag v0.1.
 
