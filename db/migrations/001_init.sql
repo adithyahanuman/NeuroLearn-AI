@@ -138,3 +138,4 @@ CREATE TABLE IF NOT EXISTS model_registry (
     feature_list JSONB NOT NULL,
     artifact_path TEXT NOT NULL
 );
+

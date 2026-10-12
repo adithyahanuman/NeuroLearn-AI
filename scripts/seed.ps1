@@ -17,3 +17,4 @@ Write-Host "Running database seeder..."
 python db\seed\seed.py
 
 Write-Host "Database seeded successfully."
+

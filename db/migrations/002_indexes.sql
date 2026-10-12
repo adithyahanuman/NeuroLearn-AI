@@ -42,3 +42,4 @@ CREATE INDEX IF NOT EXISTS idx_resources_concept
 CREATE UNIQUE INDEX IF NOT EXISTS idx_recommendations_one_active
     ON recommendations (student_id)
     WHERE status = 'active';
+

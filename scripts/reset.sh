@@ -20,3 +20,4 @@ echo "Applying migration 002_indexes.sql..."
 docker compose exec -T db psql -U "$DB_USER" -d "$DB_NAME" < db/migrations/002_indexes.sql
 
 echo "✅ Database schema reset and all migrations applied successfully."
+

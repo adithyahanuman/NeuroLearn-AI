@@ -17,3 +17,4 @@ echo "🌱 Running database seeder..."
 python db/seed/seed.py
 
 echo "✅ Database seeded successfully."
+

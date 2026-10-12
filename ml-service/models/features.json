@@ -1,0 +1,24 @@
+{
+  "features": [
+    "avg_score_last3",
+    "avg_score_all",
+    "score_slope_5",
+    "attempts_count",
+    "days_since_last_attempt",
+    "time_ratio",
+    "hints_rate",
+    "prereq_mean_mastery",
+    "prereq_min_mastery",
+    "n_weak_prereqs",
+    "concept_difficulty",
+    "concept_level",
+    "student_mean_mastery",
+    "student_consistency",
+    "student_engagement"
+  ],
+  "version": "v1",
+  "graph_hash": "d38f11d2ea416a3ecd5346a4f86d1cbf32d65e449b797c218408c6d369821810",
+  "trained_at": "2026-10-12T17:36:39.202867+00:00",
+  "threshold": 0.5,
+  "scale_pos_weight": 2.9588
+}

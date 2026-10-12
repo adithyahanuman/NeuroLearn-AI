@@ -80,7 +80,7 @@ neurolearn-ai/
 | ✅ Phase 0 | Setup, repo structure, DB compose, env, CI skeleton | `v0.0` |
 | ✅ Phase 1 | Knowledge graph + content | `v0.1` |
 | ✅ Phase 2 | Database migrations + seed | `v0.2` |
-| ⬜ Phase 3 | Data generation, Digital Twin, ML model | `v0.3` |
+| ✅ Phase 3 | Data generation, Digital Twin, ML model | `v0.3` |
 | ⬜ Phase 4 | ML FastAPI service | `v0.4` |
 | ⬜ Phase 5 | Express backend | `v0.5` |
 | ⬜ Phase 6 | Recommender + simulation | `v0.6` |

@@ -94,88 +94,88 @@ Every task you need to do, in order, as tick boxes. Do not start a phase until t
 
 **Environment**
 
-- [ ] Create the virtual environment in ml-service and activate it
-- [ ] Install numpy, pandas, scikit-learn, xgboost, shap, networkx, joblib, matplotlib, pytest, fastapi, uvicorn, pydantic
-- [ ] Run pip freeze into requirements.txt
+- [x] Create the virtual environment in ml-service and activate it
+- [x] Install numpy, pandas, scikit-learn, xgboost, shap, networkx, joblib, matplotlib, pytest, fastapi, uvicorn, pydantic
+- [x] Run pip freeze into requirements.txt
 
 **Generator (training/generate\_data.py)**
 
-- [ ] Load the concepts and prerequisites, build the difficulty, level, syllabus order and parents maps
-- [ ] Write practice\_prob with the normal, dropoff and crammer profiles
-- [ ] Write pick\_concept: 75 percent syllabus order, 25 percent random, at most 20 attempts per concept
-- [ ] Write simulate: forgetting, readiness, learning step, blocked root gap, score, time spent, hints, assessment type, timestamp
-- [ ] Write the driver: theta from N(0,1), style from Beta(2,2), 3 cohorts, stable uuid5 student ids
-- [ ] Give 25 percent of students a hidden root gap from level 2 or 3 and write ground\_truth.csv
-- [ ] Save each student's final true mastery vector for the simulator
-- [ ] Add the 5 scripted demo students with fixed ids and parameters
-- [ ] Generate a client\_attempt\_id for every attempt row
-- [ ] Write students.csv, attempts.csv and ground\_truth.csv into data/generated
-- [ ] Run it twice and confirm the two outputs are identical
+- [x] Load the concepts and prerequisites, build the difficulty, level, syllabus order and parents maps
+- [x] Write practice\_prob with the normal, dropoff and crammer profiles
+- [x] Write pick\_concept: 75 percent syllabus order, 25 percent random, at most 20 attempts per concept
+- [x] Write simulate: forgetting, readiness, learning step, blocked root gap, score, time spent, hints, assessment type, timestamp
+- [x] Write the driver: theta from N(0,1), style from Beta(2,2), 3 cohorts, stable uuid5 student ids
+- [x] Give 25 percent of students a hidden root gap from level 2 or 3 and write ground\_truth.csv
+- [x] Save each student's final true mastery vector for the simulator
+- [x] Add the 5 scripted demo students with fixed ids and parameters
+- [x] Generate a client\_attempt\_id for every attempt row
+- [x] Write students.csv, attempts.csv and ground\_truth.csv into data/generated
+- [x] Run it twice and confirm the two outputs are identical
 
 **Sanity checks on the data**
 
-- [ ] Attempts per student is roughly 100 to 400, and attempts per touched concept is 5 to 25
-- [ ] Average score falls as concept level rises
-- [ ] Demo student 1 shows weak Arrays and poor scores on Linked Lists and Binary Trees
-- [ ] Demo student 5 has exactly two attempts
+- [x] Attempts per student is roughly 100 to 400, and attempts per touched concept is 5 to 25
+- [x] Average score falls as concept level rises
+- [x] Demo student 1 shows weak Arrays and poor scores on Linked Lists and Binary Trees
+- [x] Demo student 5 has exactly two attempts
 
 **Twin (app/services/twin.py)**
 
-- [ ] Write the Twin class: mastery\_all, apply, velocity, consistency, engagement, confidence
-- [ ] Test: repeated high scores raise mastery and never pass 1
-- [ ] Test: repeated low scores lower mastery and never go below 0
-- [ ] Test: forgetting moves mastery toward the prior and never past it
-- [ ] Test: no attempts gives the prior and low confidence everywhere
+- [x] Write the Twin class: mastery\_all, apply, velocity, consistency, engagement, confidence
+- [x] Test: repeated high scores raise mastery and never pass 1
+- [x] Test: repeated low scores lower mastery and never go below 0
+- [x] Test: forgetting moves mastery toward the prior and never past it
+- [x] Test: no attempts gives the prior and low confidence everywhere
 
 **Features and labels (training/features.py)**
 
-- [ ] Write the FEATURES list of 15 names in a fixed order
-- [ ] Write features\_for using only the twin state and the mastery dictionary
-- [ ] Apply the thin data rules from Section 17.8 and write one test per rule
-- [ ] Write cohort\_median\_at: median of the 7 day attempt counts of all students in the cohort (zeros included) from attempts before the prediction time
-- [ ] Write build\_rows with the weekly grid (weeks 2 to 12) and the 14 day label, dropping rows with no outcome
-- [ ] Write the leakage test: add future attempts for the student and the cohort, rebuild, old rows must be identical
-- [ ] Print the share of label 1 rows and tune the generator until it is between 15 and 35 percent
-- [ ] Split by prediction week: train 2 to 6, validate 8 to 9, test 11 to 12, skip 7 and 10
+- [x] Write the FEATURES list of 15 names in a fixed order
+- [x] Write features\_for using only the twin state and the mastery dictionary
+- [x] Apply the thin data rules from Section 17.8 and write one test per rule
+- [x] Write cohort\_median\_at: median of the 7 day attempt counts of all students in the cohort (zeros included) from attempts before the prediction time
+- [x] Write build\_rows with the weekly grid (weeks 2 to 12) and the 14 day label, dropping rows with no outcome
+- [x] Write the leakage test: add future attempts for the student and the cohort, rebuild, old rows must be identical
+- [x] Print the share of label 1 rows and tune the generator until it is between 15 and 35 percent
+- [x] Split by prediction week: train 2 to 6, validate 8 to 9, test 11 to 12, skip 7 and 10
 
 **Baseline and XGBoost**
 
-- [ ] Train the logistic regression pipeline and record its validation AUC
-- [ ] Compute scale\_pos\_weight from the training labels
-- [ ] Run 40 random search trials with GroupKFold (5 folds, grouped by student) and early stopping after 30 rounds
-- [ ] Record the best parameters and the average best tree count
-- [ ] Refit on the full training rows with that tree count
-- [ ] Fit the isotonic calibrator on the validation predictions
-- [ ] Choose the highest threshold on validation that keeps recall at 0.75 or more
-- [ ] Save the parameters, tree count and threshold
+- [x] Train the logistic regression pipeline and record its validation AUC
+- [x] Compute scale\_pos\_weight from the training labels
+- [x] Run 40 random search trials with GroupKFold (5 folds, grouped by student) and early stopping after 30 rounds
+- [x] Record the best parameters and the average best tree count
+- [x] Refit on the full training rows with that tree count
+- [x] Fit the isotonic calibrator on the validation predictions
+- [x] Choose the highest threshold on validation that keeps recall at 0.75 or more
+- [x] Save the parameters, tree count and threshold
 
 **Evaluation (training/evaluate.py), run once on the test rows**
 
-- [ ] Compute ROC AUC, PR AUC, precision and recall at the threshold, and the Brier score
-- [ ] Save the calibration curve, confusion matrix, ROC curve and SHAP summary plot into docs
-- [ ] Make the logistic regression versus XGBoost comparison table
-- [ ] Run the ablation without prereq\_mean\_mastery, prereq\_min\_mastery and n\_weak\_prereqs
-- [ ] Measure root gap accuracy at top 1 and top 3 against ground\_truth.csv
-- [ ] List the 10 worst false negatives and write one sentence on each
-- [ ] Compare every number with the targets in Section 1.9 and note any miss
+- [x] Compute ROC AUC, PR AUC, precision and recall at the threshold, and the Brier score
+- [x] Save the calibration curve, confusion matrix, ROC curve and SHAP summary plot into docs
+- [x] Make the logistic regression versus XGBoost comparison table
+- [x] Run the ablation without prereq\_mean\_mastery, prereq\_min\_mastery and n\_weak\_prereqs
+- [x] Measure root gap accuracy at top 1 and top 3 against ground\_truth.csv
+- [x] List the 10 worst false negatives and write one sentence on each
+- [x] Compare every number with the targets in Section 1.9 and note any miss
 
 **Reasons (app/services/reasons.py)**
 
-- [ ] Write the TEMPLATES and the GROUPS merge map
-- [ ] Write top\_reasons: positive SHAP values only, top 3 groups
-- [ ] Write the context builder that fills the real numbers into each template
-- [ ] Test: every feature has a template
-- [ ] Test: no sentence contains an underscore or an unfilled brace
+- [x] Write the TEMPLATES and the GROUPS merge map
+- [x] Write top\_reasons: positive SHAP values only, top 3 groups
+- [x] Write the context builder that fills the real numbers into each template
+- [x] Test: every feature has a template
+- [x] Test: no sentence contains an underscore or an unfilled brace
 
 **Artifacts and model card**
 
-- [ ] Save models/model\_v1.joblib with the model, calibrator and threshold
-- [ ] Save models/features.json with the feature list, version, graph hash and training date
-- [ ] Save models/metrics.json with every number from the evaluation
-- [ ] Insert the model\_registry row
-- [ ] Write explain(student\_id, concept\_id) and print it for the 5 demo students
-- [ ] Check demo student 1: high risk for Linked Lists and Binary Trees, Arrays named in the reasons
-- [ ] Write docs/model-card.md with the metrics, ablation table, error analysis and limitations
+- [x] Save models/model\_v1.joblib with the model, calibrator and threshold
+- [x] Save models/features.json with the feature list, version, graph hash and training date
+- [x] Save models/metrics.json with every number from the evaluation
+- [x] Insert the model\_registry row
+- [x] Write explain(student\_id, concept\_id) and print it for the 5 demo students
+- [x] Check demo student 1: high risk for Linked Lists and Binary Trees, Arrays named in the reasons
+- [x] Write docs/model-card.md with the metrics, ablation table, error analysis and limitations
 
 **Done when:** model\_v1 is saved and registered, the leakage test passes, the metrics are reported against the targets, and the demo students look right. Tag v0.3.
 

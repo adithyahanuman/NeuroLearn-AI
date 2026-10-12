@@ -31,11 +31,24 @@ jobs:
       - name: Run root gap and knowledge graph tests
         run: pytest ml-service/tests/test_graph.py -v
 
-  # ── Future jobs (uncomment as phases complete) ─────────────────────────────
-  # ml-tests:
-  #   name: ML service tests
-  #   runs-on: ubuntu-latest
-  #   steps: ...
+  # ── Phase 3: ML service & model tests ───────────────────────────────────────
+  ml-service:
+    name: ML service unit & model tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install ML dependencies
+        run: pip install -r ml-service/requirements.txt
+
+      - name: Run ML unit tests
+        run: pytest ml-service/tests -q
 
   # backend-tests:
   #   name: Backend tests

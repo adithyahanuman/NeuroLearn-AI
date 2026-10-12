@@ -48,6 +48,7 @@ desktop.ini
 *.suo
 *.user
 
-# ── Models (large binaries – commit only explicitly) ──────────────────────────
+# ── Models (commit small v1 release artifact for CI tests) ───────────────────
 ml-service/models/*.joblib
+!ml-service/models/model_v1.joblib
 
