@@ -89,3 +89,4 @@ neurolearn-ai/
 | ⬜ Phase 9 | Integration & hardening | `v0.9` |
 | ⬜ Phase 10 | Deployment | `v1.0-rc` |
 | ⬜ Phase 11 | Docs & pitch | `v1.0` |
+

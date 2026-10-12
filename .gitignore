@@ -50,3 +50,4 @@ desktop.ini
 
 # ── Models (large binaries – commit only explicitly) ──────────────────────────
 ml-service/models/*.joblib
+

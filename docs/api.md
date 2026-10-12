@@ -158,3 +158,4 @@ Latest prediction per concept (DISTINCT ON).
 ---
 
 *This file is the contract between frontend, backend and ML service. Update it before implementing each route, and update it again from the real OpenAPI output before tagging each phase.*
+
