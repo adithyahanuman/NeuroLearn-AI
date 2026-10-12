@@ -35,7 +35,7 @@ Every task you need to do, in order, as tick boxes. Do not start a phase until t
 - [x] Write docs/api.md: for every endpoint the method, path, role, request body, success response, error cases and one real example
 - [x] Copy Sections 1 to 4 of the main doc into docs/prd.md and docs/architecture.md
 - [x] Add .github/workflows/ci.yml with only the graph job
-- [ ] Create a GitHub Projects board with Backlog, This week, Doing, Done and add one card per task in this checklist
+- [x] Create a GitHub Projects board with Backlog, This week, Doing, Done and add one card per task in this checklist
 
 **Done when:** a fresh clone, plus copying .env.example to .env and running docker compose up -d db, gives a database you can connect to. Tag v0.0.
 
