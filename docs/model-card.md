@@ -112,3 +112,4 @@ Top false negatives (where student failed, but model predicted low risk):
 1. **Synthetic Data:** Trained entirely on synthetic student simulation data; generalizability to real human classroom distributions requires pilot validation.
 2. **Subject Scope:** Restricted exclusively to Data Structures and Algorithms (38 concepts). Cross-subject transfer (e.g., Operating Systems, Databases) requires dedicated ontology definition.
 3. **Cold-Start Uncertainty:** Students with $< 3$ attempts have default consistency and engagement values and are marked with `confidence: low` in the API response.
+
