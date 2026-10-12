@@ -8,31 +8,33 @@ Every task you need to do, in order, as tick boxes. Do not start a phase until t
 
 **Tools**
 
-- [✔ ] Install Node LTS, Python 3.11, Docker Desktop, Git and VS Code
-- [ ] Run node -v, python --version, docker compose version and git --version, and note the versions
-- [ ✔] Install the VS Code extensions: Python, ESLint, Prettier, Docker
+- [x] Install Node LTS, Python 3.11, Docker Desktop, Git and VS Code
+- [x] Run node -v, python --version, docker compose version and git --version, and note the versions
+  - Node v24.16.0 · Python 3.12.4 · Docker Compose v5.4.0 · Git 2.54.0.windows.1
+- [x] Install the VS Code extensions: Python, ESLint, Prettier, Docker
 
 **Repository**
 
-- [ ] Create the folder neurolearn-ai and run git init -b main
-- [ ] Create the folders: docs, data/generated, db/migrations, db/seed, scripts, .github/workflows, ml-service (app/routers, app/services, training, models, tests), backend (src, tests), frontend
-- [ ] Write .gitignore: node\_modules, **pycache**, .venv, .env, dist, *.log, data/generated/*.csv
-- [ ] Create the GitHub repository, push main, turn on branch protection
-- [ ] Write a README with the project name and a two line description
+- [x] Create the folder neurolearn-ai and run git init -b main
+- [x] Create the folders: docs, data/generated, db/migrations, db/seed, scripts, .github/workflows, ml-service (app/routers, app/services, training, models, tests), backend (src, tests), frontend
+- [x] Write .gitignore: node\_modules, **pycache**, .venv, .env, dist, *.log, data/generated/*.csv
+- [x] Create the GitHub repository, push main, turn on branch protection
+  - https://github.com/adithyahanuman/NeuroLearn-AI · branch protection enabled · tagged v0.0
+- [x] Write a README with the project name and a two line description
 
 **Database and environment**
 
-- [ ] Write docker-compose.yml with the db service (postgres 16, healthcheck, named volume)
-- [ ] Write .env.example with every variable from Section 2.6
-- [ ] Copy it to .env
-- [ ] Make JWT\_SECRET and ML\_API\_KEY with: python -c 'import secrets; print(secrets.token\_hex(32))'
-- [ ] Run docker compose up -d db and then docker compose exec db psql -U neurolearn -c 'select version();'
+- [x] Write docker-compose.yml with the db service (postgres 16, healthcheck, named volume)
+- [x] Write .env.example with every variable from Section 2.6
+- [x] Copy it to .env
+- [x] Make JWT\_SECRET and ML\_API\_KEY with: python -c 'import secrets; print(secrets.token\_hex(32))'
+- [x] Run docker compose up -d db and then docker compose exec db psql -U neurolearn -c 'select version();'
 
 **Contract and tracking**
 
-- [ ] Write docs/api.md: for every endpoint the method, path, role, request body, success response, error cases and one real example
-- [ ] Copy Sections 1 to 4 of the main doc into docs/prd.md and docs/architecture.md
-- [ ] Add .github/workflows/ci.yml with only the graph job
+- [x] Write docs/api.md: for every endpoint the method, path, role, request body, success response, error cases and one real example
+- [x] Copy Sections 1 to 4 of the main doc into docs/prd.md and docs/architecture.md
+- [x] Add .github/workflows/ci.yml with only the graph job
 - [ ] Create a GitHub Projects board with Backlog, This week, Doing, Done and add one card per task in this checklist
 
 **Done when:** a fresh clone, plus copying .env.example to .env and running docker compose up -d db, gives a database you can connect to. Tag v0.0.
