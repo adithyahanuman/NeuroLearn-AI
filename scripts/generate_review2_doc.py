@@ -561,8 +561,8 @@ def main():
     
     add_callout(doc, 
         "Official GitHub Repository: https://github.com/adithyahanuman/NeuroLearn-AI.git\n"
-        "Active Branch: main | Milestone Release Tag: v0.3\n"
-        "Commits Logged: Phase 0 (v0.0), Phase 1 (v0.1), Phase 2 (v0.2), Phase 3 (v0.3)",
+        "Active Branch: main | Milestone Release Tag: v0.4\n"
+        "Commits Logged: Phase 0 (v0.0), Phase 1 (v0.1), Phase 2 (v0.2), Phase 3 (v0.3), Phase 4 (v0.4)",
         title="CODE REPOSITORY DETAILS"
     )
 
@@ -570,10 +570,12 @@ def main():
     add_bullet(doc, "Contains concepts.json (38 nodes), prerequisites.json (64 edges), resources.json (76 learning items), and compiled graph.json.", bold_prefix="data/: ")
     add_bullet(doc, "PostgreSQL 16 initialization schema (001_init.sql) and optimized partial/covering indexes (002_indexes.sql).", bold_prefix="db/migrations/: ")
     add_bullet(doc, "High-performance seeding script (seed.py) loading 34,555 attempts in 3.94 seconds via PostgreSQL COPY.", bold_prefix="db/seed/: ")
-    add_bullet(doc, "Core ML services including KnowledgeGraphService (graph.py), DigitalLearningTwin (twin.py), and ReasonEngine (reasons.py).", bold_prefix="ml-service/app/services/: ")
+    add_bullet(doc, "FastAPI microservice application (main.py), security middleware (security.py), Pydantic v2 schemas (schemas.py), endpoints router (routers/ml.py), and core serving engine (services/engine.py).", bold_prefix="ml-service/app/: ")
+    add_bullet(doc, "Shared services including KnowledgeGraphService (graph.py), DigitalLearningTwin (twin.py), features engine (features.py), and ReasonEngine (reasons.py).", bold_prefix="ml-service/app/services/: ")
     add_bullet(doc, "Deterministic data generator (generate_data.py), feature engineering (features.py), training pipeline (train.py), and evaluation suite (evaluate.py).", bold_prefix="ml-service/training/: ")
     add_bullet(doc, "Serialized release artifacts: model_v1.joblib (234 KB), features.json, and metrics.json.", bold_prefix="ml-service/models/: ")
-    add_bullet(doc, "Comprehensive test suite: test_graph.py, test_twin.py, test_features.py, test_reasons.py (23/23 tests passing).", bold_prefix="ml-service/tests/: ")
+    add_bullet(doc, "Comprehensive automated test suite: test_graph.py, test_twin.py, test_features.py, test_reasons.py, test_api.py (38/38 tests passing, 100% pass rate).", bold_prefix="ml-service/tests/: ")
+    add_bullet(doc, "Production container configuration (Dockerfile) with python:3.11-slim, libgomp1, non-root user appuser, and docker-compose.yml service entry.", bold_prefix="Containerization: ")
     add_bullet(doc, "Full specifications: PRD (prd.md), Architecture (architecture.md), API Contracts (api.md), and Model Card (model-card.md).", bold_prefix="docs/: ")
     add_bullet(doc, "GitHub Actions CI pipeline (.github/workflows/ci.yml) validating graph integrity and executing ML test suites.", bold_prefix=".github/workflows/: ")
 
@@ -728,13 +730,106 @@ def main():
     add_bullet(doc, "Dev Crammer (Demo 4): Characterized by 6-day inactivity gaps followed by cramming sessions. Low consistency is flagged in the Twin state.", bold_prefix="Demo 4 (Cramming Behavior): ")
     add_bullet(doc, "Priya Novice (Demo 5): Cold start student with exactly 2 attempts. Implements Section 17.8 thin-data rules, flagging predictions as 'Confidence: Low' to prevent false alarms.", bold_prefix="Demo 5 (Cold Start Safeguards): ")
 
-    format_heading(doc, "7.5 Current Status and Project Roadmap", level=2)
+    format_heading(doc, "7.5 Phase 4 ML FastAPI Microservice & Serving Performance", level=2)
+    add_p(doc,
+        "Phase 4 successfully packaged the trained ML model, Digital Learning Twin, Knowledge Graph, and SHAP explanation engine "
+        "behind a high-performance, secure FastAPI microservice. The service implements startup validation guards (refusing to boot "
+        "if features.json or graph hash diverge) and constant-time X-API-Key security via secrets.compare_digest.",
+        bold_prefix="Microservice Implementation: "
+    )
+
+    add_p(doc, "The microservice exposes 8 production endpoints conforming strictly to the project API contract:")
+    ep_table = doc.add_table(rows=9, cols=3)
+    ep_table.alignment = WD_TABLE_ALIGNMENT.CENTER
+    ep_table.autofit = False
+    ep_table.columns[0].width = Inches(1.8)
+    ep_table.columns[1].width = Inches(1.0)
+    ep_table.columns[2].width = Inches(3.7)
+
+    headers_ep = ["Endpoint", "Auth", "Functionality & Contract"]
+    for col_idx, h_text in enumerate(headers_ep):
+        c = ep_table.cell(0, col_idx)
+        set_cell_background(c, "1B365D")
+        set_cell_margins(c, top=80, bottom=80, left=100, right=100)
+        p = c.paragraphs[0]; p.paragraph_format.space_after = Pt(0)
+        r = p.add_run(h_text); r.bold = True; r.font.name = "Calibri"; r.font.color.rgb = RGBColor(255, 255, 255); r.font.size = Pt(9.5)
+
+    ep_data = [
+        ("GET /ml/health", "Public", "Service health check and model/graph version verification for orchestrators."),
+        ("POST /ml/analyze", "X-API-Key", "Unified pipeline: twin replay, 15 features, calibrated prediction, SHAP, root gaps, timings."),
+        ("POST /ml/twin/update", "X-API-Key", "Replays attempt history and returns updated mastery map, velocity, consistency, and confidence."),
+        ("POST /ml/predict", "X-API-Key", "Returns raw probabilities, calibrated risk scores, and risk bands for target concepts."),
+        ("POST /ml/explain", "X-API-Key", "Returns exact SHAP values and human-readable natural language reason templates for one concept."),
+        ("POST /ml/root-gap", "X-API-Key", "Traverses knowledge graph DAG to isolate true root prerequisite bottlenecks and shortest chains."),
+        ("POST /ml/recommend", "X-API-Key", "Remediation recommendation placeholder (returns structured path; expanded in Phase 6)."),
+        ("GET /ml/model-info", "X-API-Key", "Returns registered model metadata, training timestamp, feature list, and evaluation metrics."),
+    ]
+    for row_idx, (ep_name, ep_auth, ep_desc) in enumerate(ep_data, start=1):
+        c0 = ep_table.cell(row_idx, 0); c1 = ep_table.cell(row_idx, 1); c2 = ep_table.cell(row_idx, 2)
+        bg = "F7F9FB" if row_idx % 2 == 0 else "FFFFFF"
+        for c in (c0, c1, c2):
+            set_cell_background(c, bg); set_cell_margins(c, top=60, bottom=60, left=100, right=100)
+        p0 = c0.paragraphs[0]; p0.paragraph_format.space_after = Pt(0); p0.add_run(ep_name).font.size = Pt(8.5)
+        p1 = c1.paragraphs[0]; p1.paragraph_format.space_after = Pt(0); p1.add_run(ep_auth).font.size = Pt(8.5)
+        p2 = c2.paragraphs[0]; p2.paragraph_format.space_after = Pt(0); p2.add_run(ep_desc).font.size = Pt(8.5)
+
+    doc.add_paragraph().paragraph_format.space_after = Pt(8)
+
+    add_p(doc,
+        "To verify that the microservice satisfies the real-time serving latency budget (Section 1.9 target: p95 < 600 ms), "
+        "a benchmark of 20 sequential requests was executed on realistic student attempt histories (Demo Student 1, 134 attempts):",
+        bold_prefix="Serving Latency Benchmark: "
+    )
+
+    lat_table = doc.add_table(rows=6, cols=3)
+    lat_table.alignment = WD_TABLE_ALIGNMENT.CENTER
+    lat_table.autofit = False
+    lat_table.columns[0].width = Inches(2.5)
+    lat_table.columns[1].width = Inches(2.0)
+    lat_table.columns[2].width = Inches(2.0)
+
+    headers_l = ["Latency Benchmark Metric", "Observed Value", "PRD Section 1.9 Target"]
+    for col_idx, h_text in enumerate(headers_l):
+        c = lat_table.cell(0, col_idx)
+        set_cell_background(c, "1B365D")
+        set_cell_margins(c, top=80, bottom=80, left=100, right=100)
+        p = c.paragraphs[0]; p.paragraph_format.space_after = Pt(0)
+        r = p.add_run(h_text); r.bold = True; r.font.name = "Calibri"; r.font.color.rgb = RGBColor(255, 255, 255); r.font.size = Pt(9.5)
+
+    lat_data = [
+        ("Mean Latency", "178.98 ms", "< 600.00 ms"),
+        ("Median (p50) Latency", "178.57 ms", "—"),
+        ("90th Percentile (p90)", "193.41 ms", "—"),
+        ("95th Percentile (p95)", "199.46 ms", "< 600.00 ms (PASS - 66.8% under budget)"),
+        ("Internal Compute (total_ms)", "158.29 ms", "—"),
+    ]
+    for row_idx, (m_l, obs_l, tgt_l) in enumerate(lat_data, start=1):
+        c0 = lat_table.cell(row_idx, 0); c1 = lat_table.cell(row_idx, 1); c2 = lat_table.cell(row_idx, 2)
+        bg = "F7F9FB" if row_idx % 2 == 0 else "FFFFFF"
+        for c in (c0, c1, c2):
+            set_cell_background(c, bg); set_cell_margins(c, top=60, bottom=60, left=100, right=100)
+        p0 = c0.paragraphs[0]; p0.paragraph_format.space_after = Pt(0); p0.add_run(m_l).font.size = Pt(9)
+        p1 = c1.paragraphs[0]; p1.paragraph_format.space_after = Pt(0); p1.add_run(obs_l).font.size = Pt(9)
+        p2 = c2.paragraphs[0]; p2.paragraph_format.space_after = Pt(0)
+        r2 = p2.add_run(tgt_l); r2.font.size = Pt(9)
+        if "PASS" in tgt_l:
+            r2.bold = True; r2.font.color.rgb = RGBColor(0, 128, 0)
+
+    add_callout(doc,
+        "Performance Finding: Preloading the knowledge graph, trained model, and SHAP TreeExplainer during application "
+        "lifespan startup enables the entire /ml/analyze orchestration—including twin replay, 15-feature matrix building, "
+        "batch calibrated prediction, SHAP reasons, and root gap graph traversal—to execute in 199.46 ms p95, beating the 600 ms limit by 66.8%.",
+        title="REAL-TIME SERVING LATENCY VERIFICATION"
+    )
+
+    format_heading(doc, "7.6 Current Status and Project Roadmap", level=2)
     add_bullet(doc, "Phase 0 (Setup, Docker PostgreSQL 16, Contracts, CI skeleton) -> COMPLETE (Tagged v0.0)", bold_prefix="Phase 0: ")
     add_bullet(doc, "Phase 1 (Knowledge Graph, 38 concepts, 64 edges, DAG validation, root gap algorithm) -> COMPLETE (Tagged v0.1)", bold_prefix="Phase 1: ")
     add_bullet(doc, "Phase 2 (Database migrations, indexes, seed script with 3.94s COPY pipeline) -> COMPLETE (Tagged v0.2)", bold_prefix="Phase 2: ")
     add_bullet(doc, "Phase 3 (Data generation, Digital Twin, calibrated XGBoost, SHAP reasons, Model Card) -> COMPLETE (Tagged v0.3)", bold_prefix="Phase 3: ")
-    add_bullet(doc, "Phase 4 (FastAPI microservice, /ml/analyze, healthcheck, Docker containerization) -> NEXT IN PROGRESS", bold_prefix="Phase 4: ")
-    add_bullet(doc, "Phase 5 to Phase 11 (Express backend, Recommender, Dashboards, Hardening, Deployment) -> SCHEDULED", bold_prefix="Upcoming: ")
+    add_bullet(doc, "Phase 4 (FastAPI microservice, 8 endpoints, constant-time auth, Dockerfile, p95=199.46ms, 38/38 tests) -> COMPLETE (Tagged v0.4)", bold_prefix="Phase 4: ")
+    add_bullet(doc, "Phase 5 (Backend: Node.js, Express, TypeScript, Auth, Caching, and Fallback) -> NEXT IN PROGRESS", bold_prefix="Phase 5: ")
+    add_bullet(doc, "Phase 6 to Phase 11 (Recommender, Dashboards, Hardening, Deployment) -> SCHEDULED", bold_prefix="Upcoming: ")
 
     # ══════════════════════════════════════════════════════════════════════════
     # 8. REFERENCES (APA 7th Edition)
