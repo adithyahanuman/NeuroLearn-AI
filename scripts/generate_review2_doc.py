@@ -202,9 +202,9 @@ def main():
     
     meta_data = [
         ("Project Title:", "NeuroLearn AI: Intelligent Learning OS via Machine Learning & Knowledge Graphs"),
-        ("Subject Domain:", "Data Structures & Algorithms (38 Curricular Concepts, Levels 1 to 6)"),
-        ("Project Milestone:", "Review 2 (Phase 0, Phase 1, Phase 2, and Phase 3 Complete)"),
-        ("Target Codebase Tag:", "Release v0.3 (Branch: main)"),
+        ("Subject Domain:", "Data Structures & Algorithms (38 Curricular Concepts, Levels 1 to 5)"),
+        ("Project Milestone:", "Review 2 (Phases 0, 1, 2, 3, and 4 Complete)"),
+        ("Target Codebase Tag:", "Release v0.4 (Branch: main)"),
         ("Academic Period:", "Fall Semester 2026"),
         ("Team Members:", "Narne Adithya Hanuman (24BDS0220)\nTangudu Raajiv (24BDS0242)\nGarikapati Charan Deep (24BDS0260)\nBhamidipaty Sai Santosh (24BDS0213)"),
     ]
@@ -939,12 +939,16 @@ def main():
     add_bullet(doc, "The AI assistant was utilized as an interactive pair programming partner for: (a) generating repetitive boilerplate schema definitions, (b) scaffolding unit test suites (pytest), (c) formatting LaTeX mathematical equations, and (d) compiling automated report document generation scripts.", bold_prefix="2. Specific Purpose of Use: ")
     add_bullet(doc, "The theoretical formulation, curriculum taxonomy design (DSA concepts and dependencies), algorithmic designs (Root Gap Traversal, Digital Twin equations), experimental design, and final result analysis were conceptualized and validated entirely by the student team members. All AI-suggested code snippets were reviewed, tested against unit test suites, and verified on empirical data.", bold_prefix="3. Extent of Contribution: ")
 
-    # Save to both 'Review 2.docx' and 'Review_2.docx'
-    out_file1 = Path("Review 2.docx")
-    out_file2 = Path("Review_2.docx")
-    doc.save(str(out_file1))
-    doc.save(str(out_file2))
-    print(f"Successfully generated '{out_file1.resolve()}' and '{out_file2.resolve()}'!")
+    # Save to Review 2.docx, Review_2.docx, Project_Report.docx, and NeuroLearn_AI_Project_Report.docx
+    out_files = [
+        Path("Review 2.docx"),
+        Path("Review_2.docx"),
+        Path("Project_Report.docx"),
+        Path("NeuroLearn_AI_Project_Report.docx"),
+    ]
+    for out_f in out_files:
+        doc.save(str(out_f))
+        print(f"Successfully generated '{out_f.resolve()}'")
 
 if __name__ == "__main__":
     main()
