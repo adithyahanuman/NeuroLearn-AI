@@ -26,12 +26,17 @@ from pathlib import Path
 from app.services.graph import KnowledgeGraphService, get_graph_service
 
 def parse_iso_dt(val: Any) -> datetime:
+    if val is None:
+        return datetime.now(timezone.utc)
     if isinstance(val, datetime):
         if val.tzinfo is None:
             return val.replace(tzinfo=timezone.utc)
         return val
     s = str(val).replace("Z", "+00:00")
-    dt = datetime.fromisoformat(s)
+    try:
+        dt = datetime.fromisoformat(s)
+    except Exception:
+        return datetime.now(timezone.utc)
     if dt.tzinfo is None:
         dt = dt.replace(tzinfo=timezone.utc)
     return dt

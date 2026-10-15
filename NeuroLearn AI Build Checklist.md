@@ -181,24 +181,24 @@ Every task you need to do, in order, as tick boxes. Do not start a phase until t
 
 ## Phase 4: ML service (3 days)
 
-- [ ] Create the app files: main.py, security.py, schemas.py, the routers and the services
-- [ ] Move Twin, FEATURES and features\_for into services so training and serving share one copy
-- [ ] Write the lifespan function: load the model, calibrator, threshold, graph and the SHAP explainer once
-- [ ] Make the service refuse to start if features.json does not match the code
-- [ ] Make the service refuse to start if the graph hash does not match
-- [ ] Write the X-API-Key dependency with secrets.compare\_digest and apply it to every router except /ml/health
-- [ ] Write the request id middleware
-- [ ] Write the Pydantic models for every request and response, matching docs/api.md
-- [ ] Write /ml/analyze: replay the twin, build features, predict, calibrate, band
-- [ ] Run SHAP and build the reasons only for medium and high rows
-- [ ] Run the root gap algorithm for those rows
-- [ ] Build the twin summary and the timings, and return an empty path for now
-- [ ] Write /ml/twin/update, /ml/predict, /ml/explain, /ml/root-gap, /ml/recommend, /ml/health and /ml/model-info using the same helper functions
-- [ ] Write tests: 401 without the key, 422 on a bad body, demo student 1 high risk with Arrays as root gap, demo student 5 low confidence, empty attempts works, refusal to start on a bad features.json
-- [ ] Write the Dockerfile (slim image, libgomp1, non-root user)
-- [ ] Add the ml-service to docker-compose.yml with a healthcheck
-- [ ] Time /ml/analyze over 20 calls and check the p95 is under 600 ms
-- [ ] Open Swagger UI at /docs and check every endpoint is listed
+- [x] Create the app files: main.py, security.py, schemas.py, the routers and the services
+- [x] Move Twin, FEATURES and features\_for into services so training and serving share one copy
+- [x] Write the lifespan function: load the model, calibrator, threshold, graph and the SHAP explainer once
+- [x] Make the service refuse to start if features.json does not match the code
+- [x] Make the service refuse to start if the graph hash does not match
+- [x] Write the X-API-Key dependency with secrets.compare\_digest and apply it to every router except /ml/health
+- [x] Write the request id middleware
+- [x] Write the Pydantic models for every request and response, matching docs/api.md
+- [x] Write /ml/analyze: replay the twin, build features, predict, calibrate, band
+- [x] Run SHAP and build the reasons only for medium and high rows
+- [x] Run the root gap algorithm for those rows
+- [x] Build the twin summary and the timings, and return an empty path for now
+- [x] Write /ml/twin/update, /ml/predict, /ml/explain, /ml/root-gap, /ml/recommend, /ml/health and /ml/model-info using the same helper functions
+- [x] Write tests: 401 without the key, 422 on a bad body, demo student 1 high risk with Arrays as root gap, demo student 5 low confidence, empty attempts works, refusal to start on a bad features.json
+- [x] Write the Dockerfile (slim image, libgomp1, non-root user)
+- [x] Add the ml-service to docker-compose.yml with a healthcheck
+- [x] Time /ml/analyze over 20 calls and check the p95 is under 600 ms
+- [x] Open Swagger UI at /docs and check every endpoint is listed
 
 **Done when:** all tests pass and docker compose up ml-service reports healthy. Tag v0.4.
 
