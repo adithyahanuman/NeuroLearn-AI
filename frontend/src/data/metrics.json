@@ -1,0 +1,351 @@
+{
+  "model_version": "v1",
+  "evaluated_at": "2026-10-12T17:49:59.657104+00:00",
+  "threshold": 0.5,
+  "test_dataset": {
+    "total_rows": 3573,
+    "positive_rows": 1122,
+    "negative_rows": 2451,
+    "positive_share": 0.314,
+    "weeks": [
+      11,
+      12
+    ]
+  },
+  "test_metrics": {
+    "roc_auc": 0.9365,
+    "pr_auc": 0.8194,
+    "recall": 0.8004,
+    "precision": 0.7735,
+    "brier_score": 0.0984
+  },
+  "baseline_comparison": {
+    "logistic_regression": {
+      "roc_auc": 0.9089,
+      "pr_auc": 0.7417,
+      "recall": 0.9635,
+      "precision": 0.6727,
+      "brier_score": 0.1155
+    },
+    "xgboost_lift_roc_auc": 0.0276,
+    "xgboost_lift_pr_auc": 0.0777
+  },
+  "ablation_study": {
+    "full_model_roc_auc": 0.9365,
+    "ablation_no_prereqs_roc_auc": 0.9372,
+    "auc_drop": -0.0007,
+    "pr_auc_drop": -0.0032
+  },
+  "root_gap_accuracy": {
+    "total_ground_truth_students": 74,
+    "top1_accuracy": 0.9865,
+    "top3_accuracy": 0.9865
+  },
+  "targets_check": {
+    "auc_target_met": true,
+    "recall_target_met": true,
+    "brier_target_met": true,
+    "root_gap_target_met": true
+  },
+  "worst_false_negatives": [
+    {
+      "rank": 1,
+      "student_id": "f92a4389-1bff-59bb-b410-62fb90e99113",
+      "concept_id": 20,
+      "concept_name": "Hash Tables and Hash Maps",
+      "predicted_risk": 0.0237,
+      "actual_label": 1,
+      "explanation": "Student showed strong overall mastery (53%) and solid prior history on prerequisites, so model predicted low risk (2.4%), but student suffered an unexpected score drop on difficulty-3 Hash Tables and Hash Maps."
+    },
+    {
+      "rank": 2,
+      "student_id": "51d3994e-226d-55f6-996a-103d44dc0b6f",
+      "concept_id": 23,
+      "concept_name": "Heaps and Priority Queues",
+      "predicted_risk": 0.0237,
+      "actual_label": 1,
+      "explanation": "Student showed strong overall mastery (55%) and solid prior history on prerequisites, so model predicted low risk (2.4%), but student suffered an unexpected score drop on difficulty-3 Heaps and Priority Queues."
+    },
+    {
+      "rank": 3,
+      "student_id": "fdcb9001-bd1a-56cc-8146-f112868312f4",
+      "concept_id": 12,
+      "concept_name": "Singly Linked Lists",
+      "predicted_risk": 0.0237,
+      "actual_label": 1,
+      "explanation": "Student showed strong overall mastery (47%) and solid prior history on prerequisites, so model predicted low risk (2.4%), but student suffered an unexpected score drop on difficulty-3 Singly Linked Lists."
+    },
+    {
+      "rank": 4,
+      "student_id": "6c14bb2c-0351-5ea5-9604-a262dc3d8ea8",
+      "concept_id": 15,
+      "concept_name": "Linear and Binary Search",
+      "predicted_risk": 0.0237,
+      "actual_label": 1,
+      "explanation": "Student showed strong overall mastery (52%) and solid prior history on prerequisites, so model predicted low risk (2.4%), but student suffered an unexpected score drop on difficulty-2 Linear and Binary Search."
+    },
+    {
+      "rank": 5,
+      "student_id": "753a44ee-5998-57e0-85dd-c8c5af852abe",
+      "concept_id": 16,
+      "concept_name": "Two Pointers and Sliding Window",
+      "predicted_risk": 0.0526,
+      "actual_label": 1,
+      "explanation": "Student showed strong overall mastery (52%) and solid prior history on prerequisites, so model predicted low risk (5.3%), but student suffered an unexpected score drop on difficulty-3 Two Pointers and Sliding Window."
+    },
+    {
+      "rank": 6,
+      "student_id": "c746ea95-daf3-59da-8132-357198409e7b",
+      "concept_id": 19,
+      "concept_name": "Divide and Conquer",
+      "predicted_risk": 0.0526,
+      "actual_label": 1,
+      "explanation": "Student showed strong overall mastery (51%) and solid prior history on prerequisites, so model predicted low risk (5.3%), but student suffered an unexpected score drop on difficulty-3 Divide and Conquer."
+    },
+    {
+      "rank": 7,
+      "student_id": "0b46ec7e-126e-5c92-88cb-dfe1d307e2cb",
+      "concept_id": 20,
+      "concept_name": "Hash Tables and Hash Maps",
+      "predicted_risk": 0.0526,
+      "actual_label": 1,
+      "explanation": "Student showed strong overall mastery (50%) and solid prior history on prerequisites, so model predicted low risk (5.3%), but student suffered an unexpected score drop on difficulty-3 Hash Tables and Hash Maps."
+    },
+    {
+      "rank": 8,
+      "student_id": "790720a9-a852-5bf6-9463-a31133d51970",
+      "concept_id": 15,
+      "concept_name": "Linear and Binary Search",
+      "predicted_risk": 0.0526,
+      "actual_label": 1,
+      "explanation": "Student showed strong overall mastery (52%) and solid prior history on prerequisites, so model predicted low risk (5.3%), but student suffered an unexpected score drop on difficulty-2 Linear and Binary Search."
+    },
+    {
+      "rank": 9,
+      "student_id": "e0c64d8f-f768-57aa-af03-ee412c280225",
+      "concept_id": 16,
+      "concept_name": "Two Pointers and Sliding Window",
+      "predicted_risk": 0.0699,
+      "actual_label": 1,
+      "explanation": "Student showed strong overall mastery (49%) and solid prior history on prerequisites, so model predicted low risk (7.0%), but student suffered an unexpected score drop on difficulty-3 Two Pointers and Sliding Window."
+    },
+    {
+      "rank": 10,
+      "student_id": "6cbcf5c8-6e93-5e11-85f3-88ed5603268e",
+      "concept_id": 16,
+      "concept_name": "Two Pointers and Sliding Window",
+      "predicted_risk": 0.0884,
+      "actual_label": 1,
+      "explanation": "Student showed strong overall mastery (48%) and solid prior history on prerequisites, so model predicted low risk (8.8%), but student suffered an unexpected score drop on difficulty-3 Two Pointers and Sliding Window."
+    }
+  ],
+  "demo_explanations": [
+    {
+      "student_id": "00000000-0000-0000-0000-000000000001",
+      "student_name": "Demo 1 (Asha Demo - Arrays Root Gap)",
+      "concept_id": 7,
+      "concept_name": "Arrays and Memory Contiguity",
+      "risk": 1.0,
+      "band": "high",
+      "confidence": "high",
+      "reasons": [
+        "Your last 3 scores on this topic average 29 percent",
+        "You took 1.3 times the typical benchmark time on recent exercises",
+        "You needed 2.1 hints per attempt on average"
+      ]
+    },
+    {
+      "student_id": "00000000-0000-0000-0000-000000000001",
+      "student_name": "Demo 1 (Asha Demo - Arrays Root Gap)",
+      "concept_id": 12,
+      "concept_name": "Singly Linked Lists",
+      "risk": 1.0,
+      "band": "high",
+      "confidence": "high",
+      "reasons": [
+        "Your last 3 scores on this topic average 34 percent",
+        "A key prerequisite, Arrays and Memory Contiguity, is still weak at 30 percent",
+        "You needed 2.0 hints per attempt on average"
+      ]
+    },
+    {
+      "student_id": "00000000-0000-0000-0000-000000000001",
+      "student_name": "Demo 1 (Asha Demo - Arrays Root Gap)",
+      "concept_id": 21,
+      "concept_name": "Binary Trees and Traversals",
+      "risk": 1.0,
+      "band": "high",
+      "confidence": "high",
+      "reasons": [
+        "Your last 3 scores on this topic average 33 percent",
+        "A key prerequisite, Arrays and Memory Contiguity, is still weak at 30 percent",
+        "You needed 2.0 hints per attempt on average"
+      ]
+    },
+    {
+      "student_id": "00000000-0000-0000-0000-000000000002",
+      "student_name": "Demo 2 (Steady Rahul - High Mastery)",
+      "concept_id": 1,
+      "concept_name": "Variables and Data Types",
+      "risk": 0.0,
+      "band": "low",
+      "confidence": "high",
+      "reasons": [
+        "You have not practiced this topic for 75 days",
+        "Your recent weekly practice volume is noticeably below the cohort average"
+      ]
+    },
+    {
+      "student_id": "00000000-0000-0000-0000-000000000002",
+      "student_name": "Demo 2 (Steady Rahul - High Mastery)",
+      "concept_id": 7,
+      "concept_name": "Arrays and Memory Contiguity",
+      "risk": 0.0,
+      "band": "low",
+      "confidence": "medium",
+      "reasons": [
+        "You have not practiced this topic for 88 days",
+        "This topic is at Level 2 of the curriculum",
+        "Your recent weekly practice volume is noticeably below the cohort average"
+      ]
+    },
+    {
+      "student_id": "00000000-0000-0000-0000-000000000002",
+      "student_name": "Demo 2 (Steady Rahul - High Mastery)",
+      "concept_id": 12,
+      "concept_name": "Singly Linked Lists",
+      "risk": 0.0,
+      "band": "low",
+      "confidence": "high",
+      "reasons": [
+        "This is a challenging topic with a difficulty rating of 3 out of 5",
+        "This topic is at Level 3 of the curriculum",
+        "Your recent weekly practice volume is noticeably below the cohort average"
+      ]
+    },
+    {
+      "student_id": "00000000-0000-0000-0000-000000000003",
+      "student_name": "Demo 3 (Kiran Dropoff - Late Drop)",
+      "concept_id": 1,
+      "concept_name": "Variables and Data Types",
+      "risk": 0.0,
+      "band": "low",
+      "confidence": "medium",
+      "reasons": [
+        "You have not practiced this topic for 58 days",
+        "Your recent weekly practice volume is noticeably below the cohort average"
+      ]
+    },
+    {
+      "student_id": "00000000-0000-0000-0000-000000000003",
+      "student_name": "Demo 3 (Kiran Dropoff - Late Drop)",
+      "concept_id": 7,
+      "concept_name": "Arrays and Memory Contiguity",
+      "risk": 0.0,
+      "band": "low",
+      "confidence": "high",
+      "reasons": [
+        "You have not practiced this topic for 61 days",
+        "This topic is at Level 2 of the curriculum",
+        "Your recent weekly practice volume is noticeably below the cohort average"
+      ]
+    },
+    {
+      "student_id": "00000000-0000-0000-0000-000000000003",
+      "student_name": "Demo 3 (Kiran Dropoff - Late Drop)",
+      "concept_id": 12,
+      "concept_name": "Singly Linked Lists",
+      "risk": 0.0,
+      "band": "low",
+      "confidence": "medium",
+      "reasons": [
+        "You have not practiced this topic for 61 days",
+        "This is a challenging topic with a difficulty rating of 3 out of 5",
+        "Prerequisites for this concept have an average mastery of only 63 percent"
+      ]
+    },
+    {
+      "student_id": "00000000-0000-0000-0000-000000000004",
+      "student_name": "Demo 4 (Dev Crammer - Irregular Bursts)",
+      "concept_id": 1,
+      "concept_name": "Variables and Data Types",
+      "risk": 0.0,
+      "band": "low",
+      "confidence": "medium",
+      "reasons": [
+        "You have not practiced this topic for 31 days",
+        "Your recent weekly practice volume is noticeably below the cohort average"
+      ]
+    },
+    {
+      "student_id": "00000000-0000-0000-0000-000000000004",
+      "student_name": "Demo 4 (Dev Crammer - Irregular Bursts)",
+      "concept_id": 7,
+      "concept_name": "Arrays and Memory Contiguity",
+      "risk": 0.0,
+      "band": "low",
+      "confidence": "medium",
+      "reasons": [
+        "You have not practiced this topic for 66 days",
+        "Prerequisites for this concept have an average mastery of only 53 percent",
+        "This topic is at Level 2 of the curriculum"
+      ]
+    },
+    {
+      "student_id": "00000000-0000-0000-0000-000000000004",
+      "student_name": "Demo 4 (Dev Crammer - Irregular Bursts)",
+      "concept_id": 12,
+      "concept_name": "Singly Linked Lists",
+      "risk": 0.0,
+      "band": "low",
+      "confidence": "medium",
+      "reasons": [
+        "This is a challenging topic with a difficulty rating of 3 out of 5",
+        "You have not practiced this topic for 32 days",
+        "This topic is at Level 3 of the curriculum"
+      ]
+    },
+    {
+      "student_id": "00000000-0000-0000-0000-000000000005",
+      "student_name": "Demo 5 (Priya Novice - Cold Start)",
+      "concept_id": 1,
+      "concept_name": "Variables and Data Types",
+      "risk": 0.0,
+      "band": "low",
+      "confidence": "low",
+      "reasons": [
+        "Your study schedule has been irregular with low practice consistency",
+        "Your overall curriculum mastery across all topics is currently 36 percent",
+        "Your scores on this topic dropped about 0 points over your last 5 attempts"
+      ]
+    },
+    {
+      "student_id": "00000000-0000-0000-0000-000000000005",
+      "student_name": "Demo 5 (Priya Novice - Cold Start)",
+      "concept_id": 7,
+      "concept_name": "Arrays and Memory Contiguity",
+      "risk": 0.8947,
+      "band": "high",
+      "confidence": "low",
+      "reasons": [
+        "Your last 3 scores on this topic average 38 percent",
+        "A key prerequisite, Loops and Iteration, is still weak at 40 percent",
+        "Your overall curriculum mastery across all topics is currently 36 percent"
+      ]
+    },
+    {
+      "student_id": "00000000-0000-0000-0000-000000000005",
+      "student_name": "Demo 5 (Priya Novice - Cold Start)",
+      "concept_id": 12,
+      "concept_name": "Singly Linked Lists",
+      "risk": 1.0,
+      "band": "high",
+      "confidence": "low",
+      "reasons": [
+        "Your last 3 scores on this topic average 35 percent",
+        "A key prerequisite, Arrays and Memory Contiguity, is still weak at 38 percent",
+        "This is a challenging topic with a difficulty rating of 3 out of 5"
+      ]
+    }
+  ]
+}

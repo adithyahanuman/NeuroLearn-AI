@@ -1,6 +1,6 @@
 # NeuroLearn AI – API Contract
 
-> **Version:** 0.0 (Phase 0 stub – updated after each phase)
+> **Version:** 0.5 (Phase 5 Backend complete)
 > **Base URL (local):** `http://localhost:3001`
 > **Auth:** All protected routes require `Authorization: Bearer <jwt>` unless noted.
 > **ML service:** `http://localhost:8000` (internal only, secured with `X-API-Key`).

@@ -236,13 +236,19 @@ def find_root_gap_endpoint(request: RootGapRequest) -> RootGapResponse:
 )
 def recommend_path(request: RecommendRequest) -> RecommendResponse:
     """
-    Remediation recommendation placeholder (Section 7).
-    Returns empty path for Phase 4; will be fully expanded in Phase 6.
+    Generates an ordered personalized remediation path based on digital twin mastery and risk.
     """
+    engine = get_engine()
+    attempts_list = [a.model_dump(by_alias=False) for a in request.attempts]
+    path = engine.recommend(
+        student_id=request.student_id,
+        attempts=attempts_list,
+        as_of=request.as_of,
+    )
     return RecommendResponse(
         student_id=request.student_id,
         generated_at=datetime.now(timezone.utc).isoformat(),
-        path=[],
+        path=path,
     )
 
 
@@ -266,3 +272,4 @@ def get_model_info() -> ModelInfoResponse:
         threshold=engine.threshold,
         metrics=engine.metrics_meta,
     )
+

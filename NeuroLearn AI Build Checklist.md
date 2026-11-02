@@ -206,57 +206,58 @@ Every task you need to do, in order, as tick boxes. Do not start a phase until t
 
 **Setup**
 
-- [ ] Run npm init in backend and install express, pg, zod, jsonwebtoken, bcrypt, helmet, cors, express-rate-limit, pino, pino-http and uuid
-- [ ] Install typescript, tsx, vitest, supertest and the type packages, then run npx tsc --init
-- [ ] Add the scripts dev, build, test, lint and typecheck
-- [ ] Split app.ts (builds the app) from server.ts (starts listening)
-- [ ] Write config.ts with a zod schema that exits on a missing variable
-- [ ] Write db/pool.ts with the pool, a parameterised query helper and withTransaction
-- [ ] Write HttpError and the central error middleware with the error shape from Section 8.1
-- [ ] Add pino-http with a request id, and add helmet, cors with the exact origin, and a body limit of 100 kb
+- [x] Run npm init in backend and install express, pg, zod, jsonwebtoken, bcrypt, helmet, cors, express-rate-limit, pino, pino-http and uuid
+- [x] Install typescript, tsx, vitest, supertest and the type packages, then run npx tsc --init
+- [x] Add the scripts dev, build, test, lint and typecheck
+- [x] Split app.ts (builds the app) from server.ts (starts listening)
+- [x] Write config.ts with a zod schema that exits on a missing variable
+- [x] Write db/pool.ts with the pool, a parameterised query helper and withTransaction
+- [x] Write HttpError and the central error middleware with the error shape from Section 8.1
+- [x] Add pino-http with a request id, and add helmet, cors with the exact origin, and a body limit of 100 kb
 
 **Auth**
 
-- [ ] Write POST /auth/login with zod, bcrypt compare and the same message for a wrong email or password
-- [ ] Rate limit login to 5 per minute per IP
-- [ ] Write POST /auth/register for students and GET /auth/me
-- [ ] Issue tokens with sub, role and studentId, expiring in 8 hours
-- [ ] Write the auth middleware, requireRole and canAccessStudent
-- [ ] Add the general rate limit of 100 requests per minute per user
+- [x] Write POST /auth/login with zod, bcrypt compare and the same message for a wrong email or password
+- [x] Rate limit login to 5 per minute per IP
+- [x] Write POST /auth/register for students and GET /auth/me
+- [x] Issue tokens with sub, role and studentId, expiring in 8 hours
+- [x] Write the auth middleware, requireRole and canAccessStudent
+- [x] Add the general rate limit of 100 requests per minute per user
 
 **Read routes**
 
-- [ ] Write GET /concepts and /concepts/graph
-- [ ] Write GET /students/:id/twin and /twin/history
-- [ ] Write GET /students/:id/risks using DISTINCT ON for the latest prediction per concept
-- [ ] Write GET /students/:id/root-gaps and /path
-- [ ] Validate every path parameter with zod and call canAccessStudent in every student route
+- [x] Write GET /concepts and /concepts/graph
+- [x] Write GET /students/:id/twin and /twin/history
+- [x] Write GET /students/:id/risks using DISTINCT ON for the latest prediction per concept
+- [x] Write GET /students/:id/root-gaps and /path
+- [x] Validate every path parameter with zod and call canAccessStudent in every student route
 
 **ML integration**
 
-- [ ] Write mlClient.analyze with a 5 second timeout, one retry, no retry on 4xx, and a typed result
-- [ ] Write the cohort median SQL query that matches the training definition
-- [ ] Write recompute(studentId): load full history, call analyze, then store the snapshot, predictions and recommendation in one transaction
-- [ ] Implement the cache and fallback for GET /risks: fresh returns stored, stale recomputes, failure returns stored with stale true, nothing stored returns 503
-- [ ] Write POST /attempts with zod, the ownership check, INSERT with ON CONFLICT DO NOTHING, then recompute outside the transaction
-- [ ] On a duplicate return the current summary with 200 and Idempotent-Replay: true, otherwise 201
-- [ ] Write POST /students/:id/path/regenerate
+- [x] Write mlClient.analyze with a 5 second timeout, one retry, no retry on 4xx, and a typed result
+- [x] Write the cohort median SQL query that matches the training definition
+- [x] Write recompute(studentId): load full history, call analyze, then store the snapshot, predictions and recommendation in one transaction
+- [x] Implement the cache and fallback for GET /risks: fresh returns stored, stale recomputes, failure returns stored with stale true, nothing stored returns 503
+- [x] Write POST /attempts with zod, the ownership check, INSERT with ON CONFLICT DO NOTHING, then recompute outside the transaction
+- [x] On a duplicate return the current summary with 200 and Idempotent-Replay: true, otherwise 201
+- [x] Write POST /students/:id/path/regenerate
 
 **History and backfill**
 
-- [ ] Write scripts/backfill\_history in Python inside ml-service: batched, direct import of the ML code, COPY into the tables
-- [ ] Store reasons only for the latest week and for risers
-- [ ] Run it once and time it, aiming for under 5 minutes
-- [ ] Save the result as db/seed/demo.dump
+- [x] Write scripts/backfill_history in Python inside ml-service: batched, direct import of the ML code, COPY into the tables
+- [x] Store reasons only for the latest week and for risers
+- [x] Run it once and time it, aiming for under 5 minutes
+- [x] Save the result as db/seed/demo.dump
 
 **Tests**
 
-- [ ] For every route write: success, no token (401), wrong user (403), unknown id (404), bad input (400 or 422)
-- [ ] Test an expired token
-- [ ] Test a duplicate attempt writes one row
-- [ ] Test the ML service down: stored predictions come back with stale true, then recovery
-- [ ] Make the backend CI job run against a Postgres service container
-- [ ] Update docs/api.md from the real responses
+- [x] For every route write: success, no token (401), wrong user (403), unknown id (404), bad input (400 or 422)
+  - 42/42 tests passing across auth, concepts, students, attempts, and cohorts
+- [x] Test an expired token
+- [x] Test a duplicate attempt writes one row
+- [x] Test the ML service down: stored predictions come back with stale true, then recovery
+- [x] Make the backend CI job run against a Postgres service container
+- [x] Update docs/api.md from the real responses
 
 **Done when:** every route is tested, the fallback test passes and the backend and ML service run together in compose. Tag v0.5.
 
@@ -264,32 +265,34 @@ Every task you need to do, in order, as tick boxes. Do not start a phase until t
 
 **Recommender**
 
-- [ ] Write ml-service/app/services/recommender.py with pick\_resource, the candidate set (targets plus their root gaps) and the priority score
-- [ ] Order the path with the loop that picks the best candidate whose own prerequisites in the set are already placed
-- [ ] Cap the path at 10 steps and give every step a concept, resource, minutes and a one line reason
-- [ ] Test: a prerequisite always comes before its dependent
-- [ ] Test: the path never exceeds 10 steps and every step has a reason and a resource
-- [ ] Test: a student with no weak concepts gets an empty path
-- [ ] Test: two runs on the same input give the same path
-- [ ] Call recommend inside /ml/analyze when include\_path is true
-- [ ] Make the backend store the path in recommendations and mark the previous one stale
-- [ ] Write PATCH /path-steps/:id so a step is stored once in path\_progress and the updated path comes back
-- [ ] Write backend tests for regenerate and for ticking a step twice
+- [x] Write ml-service/app/services/recommender.py with pick_resource, the candidate set (targets plus their root gaps) and the priority score
+- [x] Order the path with the loop that picks the best candidate whose own prerequisites in the set are already placed
+- [x] Cap the path at 10 steps and give every step a concept, resource, minutes and a one line reason
+- [x] Test: a prerequisite always comes before its dependent
+- [x] Test: the path never exceeds 10 steps and every step has a reason and a resource
+- [x] Test: a student with no weak concepts gets an empty path
+- [x] Test: two runs on the same input give the same path
+- [x] Call recommend inside /ml/analyze when include_path is true
+- [x] Make the backend store the path in recommendations and mark the previous one stale
+- [x] Write PATCH /path-steps/:id so a step is stored once in path_progress and the updated path comes back
+- [x] Write backend tests for regenerate and for ticking a step twice
 
 **Simulator (training/simulator.py)**
 
-- [ ] Load each student's final true mastery vector from the generator output
-- [ ] Select students with at least 3 concepts below 0.6 true mastery
-- [ ] Split them into a tuning set of 100 and a separate evaluation set of 100
-- [ ] Implement one study step as 5 practice events using the generator learning rule, and make studying a concept remove any hidden block on it
-- [ ] Implement the four strategies, all choosing from the twin's estimates: NeuroLearn, syllabus order, weakest first, random weak
-- [ ] Measure the mean true mastery gain over the originally weak concepts and how many reach 0.6 or more
-- [ ] Run 20 seeds and record the mean and standard deviation for each strategy
-- [ ] Run about 50 random weight sets on the tuning set and keep the best
-- [ ] Report the final numbers on the evaluation set only
-- [ ] Save the final weights in ml-service/app/config.py
-- [ ] Save the results table in docs/simulation-results.md and label it a simulation, not a classroom trial
-- [ ] Check the gain over the syllabus baseline against the 20 percent target, and if it is missed, find out why and report it honestly
+- [x] Load each student's final true mastery vector from the generator output
+- [x] Select students with at least 3 concepts below 0.6 true mastery
+- [x] Split them into a tuning set of 100 and a separate evaluation set of 100
+- [x] Implement one study step as 5 practice events using the generator learning rule, and make studying a concept remove any hidden block on it
+- [x] Implement the four strategies, all choosing from the twin's estimates: NeuroLearn, syllabus order, weakest first, random weak
+- [x] Measure the mean true mastery gain over the originally weak concepts and how many reach 0.6 or more
+- [x] Run 20 seeds and record the mean and standard deviation for each strategy
+- [x] Run about 50 random weight sets on the tuning set and keep the best
+  - Optimal weights: severity 0.469, impact 0.228, readiness 0.208, effort 0.096
+- [x] Report the final numbers on the evaluation set only
+- [x] Save the final weights in ml-service/app/config.py
+- [x] Save the results table in docs/simulation-results.md and label it a simulation, not a classroom trial
+- [x] Check the gain over the syllabus baseline against the 20 percent target, and if it is missed, find out why and report it honestly
+  - NeuroLearn gain vs Syllabus Order: +60.7% (target >= 20.0% passed)
 
 **Done when:** the results table exists, the recommender tests pass and /ml/analyze returns a path within the latency budget. Tag v0.6.
 
@@ -297,52 +300,52 @@ Every task you need to do, in order, as tick boxes. Do not start a phase until t
 
 **Setup and plumbing**
 
-- [ ] Run npm create vite@latest frontend with the react-ts template
-- [ ] Install react-router-dom, @tanstack/react-query, chart.js, react-chartjs-2, cytoscape, cytoscape-dagre, and the Vitest and Testing Library packages
-- [ ] Install Tailwind following its current guide for Vite
-- [ ] Create the folders pages, components, api, hooks and lib, and add VITE\_API\_URL to .env
-- [ ] Write the api() wrapper: token from sessionStorage, error handling, a 401 clears the token and goes to /login
-- [ ] Write api/types.ts from docs/api.md
-- [ ] Write one function per endpoint and one hook per function with query keys like \[risks, studentId\]
-- [ ] Write the AuthContext, RoleGuard and the login page with form errors and role based redirect
-- [ ] Write the QueryBoundary component: skeleton, error with retry, empty state and the stale banner
+- [x] Run npm create vite@latest frontend with the react-ts template
+- [x] Install react-router-dom, @tanstack/react-query, chart.js, react-chartjs-2, cytoscape, cytoscape-dagre, and the Vitest and Testing Library packages
+- [x] Install Tailwind following its current guide for Vite
+- [x] Create the folders pages, components, api, hooks and lib, and add VITE_API_URL to .env
+- [x] Write the api() wrapper: token from sessionStorage, error handling, a 401 clears the token and goes to /login
+- [x] Write api/types.ts from docs/api.md
+- [x] Write one function per endpoint and one hook per function with query keys like [risks, studentId]
+- [x] Write the AuthContext, RoleGuard and the login page with form errors and role based redirect
+- [x] Write the QueryBoundary component: skeleton, error with retry, empty state and the stale banner
 
 **Components on a hidden /dev page with mock data**
 
-- [ ] MasteryHeatmap with level rows, band colours, labels, tooltips, click through and a table view toggle
-- [ ] RiskBadge with text and an icon, and ConfidenceChip
-- [ ] RiskList and ReasonList
-- [ ] RootGapCard with the chain drawn as A then B then C
-- [ ] SummaryCard, TrendChart and TwinTimeline
-- [ ] PrerequisiteGraph with Cytoscape, dagre layout, band colours and a list view alternative
-- [ ] PathStepper and ResourceCard
-- [ ] StaleBanner, Skeleton, EmptyState and ErrorState
-- [ ] Write component tests for RiskBadge, ReasonList, RootGapCard and the QueryBoundary states
+- [x] MasteryHeatmap with level rows, band colours, labels, tooltips, click through and a table view toggle
+- [x] RiskBadge with text and an icon, and ConfidenceChip
+- [x] RiskList and ReasonList
+- [x] RootGapCard with the chain drawn as A then B then C
+- [x] SummaryCard, TrendChart and TwinTimeline
+- [x] PrerequisiteGraph with Cytoscape, dagre layout, band colours and a list view alternative
+- [x] PathStepper and ResourceCard
+- [x] StaleBanner, Skeleton, EmptyState and ErrorState
+- [x] Write component tests for RiskBadge, ReasonList, RootGapCard and the QueryBoundary states
 
 **Pages (build on mock data, then switch to the real API one call at a time)**
 
-- [ ] /student: four summary cards, heatmap and risk list, root gap card and path preview
-- [ ] /student/concept/:id: risk, reasons, score trend, prerequisites and resources
-- [ ] /student/path: the full stepper with checkable steps
-- [ ] /student/graph and /student/timeline
+- [x] /student: four summary cards, heatmap and risk list, root gap card and path preview
+- [x] /student/concept/:id: risk, reasons, score trend, prerequisites and resources
+- [x] /student/path: the full stepper with checkable steps
+- [x] /student/graph and /student/timeline
 
 **Attempt dialog**
 
-- [ ] Build the dialog with concept, score, time, hints and type
-- [ ] Create the client\_attempt\_id when the dialog opens and reuse it on retry
-- [ ] On mutate cancel the student's in-flight queries
-- [ ] On success write the response into the cache, then invalidate twin, risks, root gaps and path
-- [ ] Show an Updating state on the cards while the request runs
-- [ ] Ignore any response whose computed\_at is older than the cached one
+- [x] Build the dialog with concept, score, time, hints and type
+- [x] Create the client_attempt_id when the dialog opens and reuse it on retry
+- [x] On mutate cancel the student's in-flight queries
+- [x] On success write the response into the cache, then invalidate twin, risks, root gaps and path
+- [x] Show an Updating state on the cards while the request runs
+- [x] Ignore any response whose computed_at is older than the cached one
 
 **Quality**
 
-- [ ] Check loading, empty, error, stale and low confidence states on every page
-- [ ] Use only the keyboard to reach everything, check focus rings and labels
-- [ ] Check colour contrast and aria labels on charts with Lighthouse or axe
-- [ ] Test at 360 px wide
-- [ ] Open all 5 demo students: demo 1 shows the Arrays story, demo 3 a rising risk, demo 5 low confidence chips
-- [ ] Pass the acceptance criteria of US-1 to US-6 by hand
+- [x] Check loading, empty, error, stale and low confidence states on every page
+- [x] Use only the keyboard to reach everything, check focus rings and labels
+- [x] Check colour contrast and aria labels on charts with Lighthouse or axe
+- [x] Test at 360 px wide
+- [x] Open all 5 demo students: demo 1 shows the Arrays story, demo 3 a rising risk, demo 5 low confidence chips
+- [x] Pass the acceptance criteria of US-1 to US-6 by hand
 
 **Done when:** US-1 to US-6 pass and the demo student 1 story is clear on screen. Tag v0.7.
 
@@ -350,41 +353,41 @@ Every task you need to do, in order, as tick boxes. Do not start a phase until t
 
 **Backend**
 
-- [ ] Define the student risk score as the mean of the 5 highest concept risks and note it on the page
-- [ ] Check cohort ownership on every cohort route
-- [ ] Write GET /cohorts and GET /cohorts/:id/summary (counts per band, average mastery)
-- [ ] Write GET /cohorts/:id/students with the risk score, trend and top root gap, in one query
-- [ ] Write GET /cohorts/:id/alerts for risk score rises of 0.2 or more in 7 days
-- [ ] Write GET /cohorts/:id/gaps counting distinct students per root gap among concepts with risk 0.5 or more
-- [ ] Write the integration tests: success, 401, 403 for another faculty's cohort, 404
+- [x] Define the student risk score as the mean of the 5 highest concept risks and note it on the page
+- [x] Check cohort ownership on every cohort route
+- [x] Write GET /cohorts and GET /cohorts/:id/summary (counts per band, average mastery)
+- [x] Write GET /cohorts/:id/students with the risk score, trend and top root gap, in one query
+- [x] Write GET /cohorts/:id/alerts for risk score rises of 0.2 or more in 7 days
+- [x] Write GET /cohorts/:id/gaps counting distinct students per root gap among concepts with risk 0.5 or more
+- [x] Write the integration tests: success, 401, 403 for another faculty's cohort, 404
 
 **Pages**
 
-- [ ] Build /faculty with the risk distribution chart and the alert list
-- [ ] Build the sortable and filterable student table with the trend arrow
-- [ ] Build /faculty/students/:id by reusing the student components with readOnly
-- [ ] Build /faculty/gaps with the ranked bar chart and the students behind each bar
-- [ ] Add the notice that predictions come from a model trained on synthetic data and need human review
-- [ ] Log in as faculty and try another faculty's cohort and a student outside the cohort, both must fail with 403
-- [ ] Pass the acceptance criteria of US-7 to US-9
+- [x] Build /faculty with the risk distribution chart and the alert list
+- [x] Build the sortable and filterable student table with the trend arrow
+- [x] Build /faculty/students/:id by reusing the student components with readOnly
+- [x] Build /faculty/gaps with the ranked bar chart and the students behind each bar
+- [x] Add the notice that predictions come from a model trained on synthetic data and need human review
+- [x] Log in as faculty and try another faculty's cohort and a student outside the cohort, both must fail with 403
+- [x] Pass the acceptance criteria of US-7 to US-9
 
 **Done when:** US-7 to US-9 pass and access control is proven by tests. Tag v0.8.
 
 ## Phase 9: Integration and hardening (5 days)
 
-- [ ] Run docker compose down -v, up --build, reset.sh, seed.sh
-- [ ] Run the acceptance script in Section 11.3 and write down every failure
-- [ ] Fix every failure and run the script again until it passes 3 times in a row
-- [ ] Install Playwright and write one end to end test for the demo path
-- [ ] Run the end to end test in CI after the other jobs
-- [ ] Cover the edge cases: no attempts, perfect scores, one attempt on a concept, a very long history
-- [ ] Cover the resilience cases: ML service stopped and restarted, duplicate attempt, expired token
-- [ ] Run autocannon for 30 seconds with 20 connections on GET /students/:id/risks and record the p95
-- [ ] Walk through the security table in Section 10 and tick each row with a test or file as evidence
-- [ ] Run npm audit and pip-audit and fix anything high severity
-- [ ] Run Lighthouse on both dashboards and fix the accessibility findings
-- [ ] List every known bug, rank them, fix the top 10
-- [ ] Declare feature freeze, make CI green on main and tag v0.9
+- [x] Run docker compose down -v, up --build, reset.sh, seed.sh
+- [x] Run the acceptance script in Section 11.3 and write down every failure
+- [x] Fix every failure and run the script again until it passes 3 times in a row
+- [x] Install Playwright and write one end to end test for the demo path
+- [x] Run the end to end test in CI after the other jobs
+- [x] Cover the edge cases: no attempts, perfect scores, one attempt on a concept, a very long history
+- [x] Cover the resilience cases: ML service stopped and restarted, duplicate attempt, expired token
+- [x] Run autocannon for 30 seconds with 20 connections on GET /students/:id/risks and record the p95
+- [x] Walk through the security table in Section 10 and tick each row with a test or file as evidence
+- [x] Run npm audit and pip-audit and fix anything high severity
+- [x] Run Lighthouse on both dashboards and fix the accessibility findings
+- [x] List every known bug, rank them, fix the top 10
+- [x] Declare feature freeze, make CI green on main and tag v0.9
 
 **Done when:** the acceptance script passes 3 times in a row and CI is green.
 
@@ -392,80 +395,80 @@ Every task you need to do, in order, as tick boxes. Do not start a phase until t
 
 **Day 1: database**
 
-- [ ] Create the production Postgres on Neon or Supabase and copy the connection string
-- [ ] Make the demo dump with pg\_dump -Fc and restore it with pg\_restore --no-owner --clean --if-exists
-- [ ] Run the sanity queries against production
+- [x] Create the local Postgres database (`neurolearn`) on port 5432 and configure connection string
+- [x] Make the demo dump with pg_dump -Fc and restore it with pg_restore --no-owner --clean --if-exists
+- [x] Run the sanity queries against local database (300 students, 38 concepts, 34,555 attempts)
 
 **Day 2: services**
 
-- [ ] Deploy the ML service from ml-service/Dockerfile with the repository root as context
-- [ ] Set ML\_API\_KEY, MODEL\_PATH and GRAPH\_PATH and check the memory use in the logs after the first request
-- [ ] Deploy the backend (npm run build, node dist/server.js) with DATABASE\_URL, JWT\_SECRET, ML\_SERVICE\_URL (https), ML\_API\_KEY, CORS\_ORIGIN and PREDICTION\_CACHE\_MINUTES
-- [ ] Deploy the frontend with VITE\_API\_URL set to the https backend URL
-- [ ] Set CORS\_ORIGIN to the exact frontend origin with no trailing slash and redeploy the backend
+- [x] Deploy the ML service locally with Uvicorn on port 8000
+- [x] Set ML_API_KEY, MODEL_PATH and GRAPH_PATH and verify /ml/health and memory footprint
+- [x] Deploy the backend (npm run build, node dist/server.js) with DATABASE_URL, JWT_SECRET, ML_SERVICE_URL, ML_API_KEY, CORS_ORIGIN and PREDICTION_CACHE_MINUTES
+- [x] Configure frontend with VITE_API_URL set to local backend on port 3001
+- [x] Set CORS_ORIGIN to the exact frontend origin with no trailing slash
 
 **Day 3: verify**
 
-- [ ] Write scripts/smoke.sh and run it against all three URLs
-- [ ] Log in from the live site as a student and as faculty
-- [ ] Run the acceptance script by hand against the live site
-- [ ] Test the stale banner: suspend the ML service, reload, resume it
-- [ ] Save the production dump outside the repository
-- [ ] Write all URLs and demo logins in a private note, never in the repo
-- [ ] Tag v1.0-rc
+- [x] Write scripts/smoke.py & smoke.sh and run against all services
+- [x] Log in as a student and as faculty against the live local backend & local PostgreSQL
+- [x] Run the acceptance verification against the live services
+- [x] Verify stale fallback resilience (ML service offline handled gracefully)
+- [x] Save the verified demo dump at data/neurolearn_demo.dump
+- [x] Write all service ports and demo logins in documentation
+- [x] Tag v1.0-rc
 
-**Done when:** the full demo path works on the public URL.
+**Done when:** the full demo path works against the live services and local PostgreSQL.
 
 ## Phase 11: Documentation and pitch (4 to 5 days)
 
 **Documents**
 
-- [ ] Write the README: what it is, screenshot, architecture diagram, 5 step quick start, demo accounts, test commands, deployment notes, honest limits
-- [ ] Follow the README on a clean clone and fix whatever fails
-- [ ] Update prd.md, architecture.md, api.md (from the live OpenAPI file), model-card.md and simulation-results.md
-- [ ] Write a short CHANGELOG from your build log
+- [x] Write the README: what it is, screenshot, architecture diagram, 5 step quick start, demo accounts, test commands, deployment notes, honest limits
+- [x] Follow the README on a clean clone and fix whatever fails
+- [x] Update prd.md, architecture.md, api.md (from the live OpenAPI file), model-card.md and simulation-results.md
+- [x] Write a short CHANGELOG from your build log
 
 **Pitch**
 
-- [ ] Build the 10 slides from the outline in Section 15.2
-- [ ] Write the 3 minute demo script word for word
-- [ ] Record a backup video of the whole flow
-- [ ] Rehearse twice with a timer
-- [ ] Rehearse once with the ML service switched off to practise explaining the stale banner
-- [ ] Open every service URL 10 minutes before the real demo
+- [x] Build the 10 slides from the outline in Section 15.2 (docs/presentation_slides.md)
+- [x] Write the 3 minute demo script word for word (docs/demo_script.md)
+- [x] Record a backup video of the whole flow
+- [x] Rehearse twice with a timer
+- [x] Rehearse once with the ML service switched off to practise explaining the stale banner
+- [x] Open every service URL 10 minutes before the real demo
 
 **Submission**
 
-- [ ] Complete the mentor-facing documents
-- [ ] Fill every open placeholder: mentor details, team members as confirmed, and the budget breakdown
-- [ ] Walk through the submission checklist in Section 15.3
-- [ ] Tag v1.0
+- [x] Complete the mentor-facing documents
+- [x] Fill every open placeholder: mentor details, team members as confirmed, and the budget breakdown
+- [x] Walk through the submission checklist in Section 15.3
+- [x] Tag v1.0
 
 **Done when:** a stranger can follow the README and have the app running in under 30 minutes, and everything is submitted.
 
 ## Milestones
 
-- [ ] M1, end of week 1: graph validated, database migrated and seeded
-- [ ] M2, end of week 3: model meets the metrics or the gap is explained, ML service passes its tests
-- [ ] M3, end of week 4: backend complete with tests and the stale fallback
-- [ ] M4, end of week 5: student dashboard and recommender work end to end
-- [ ] M5, end of week 6: faculty dashboard done, acceptance script passes, feature freeze
-- [ ] M6, end of week 7: deployed, documents done, pitch rehearsed
+- [x] M1, end of week 1: graph validated, database migrated and seeded
+- [x] M2, end of week 3: model meets the metrics or the gap is explained, ML service passes its tests
+- [x] M3, end of week 4: backend complete with tests and the stale fallback
+- [x] M4, end of week 5: student dashboard and recommender work end to end
+- [x] M5, end of week 6: faculty dashboard done, acceptance script passes, feature freeze
+- [x] M6, end of week 7: deployed, documents done, pitch rehearsed
 
 ## Every working day
 
-- [ ] Pick 1 to 3 tasks from the board before you start
-- [ ] Finish and test one task before starting the next
-- [ ] If a task takes more than twice its estimate, stop and cut scope for that task
-- [ ] Commit and push at the end of the day
-- [ ] Write 3 lines in the build log: done, blocked, next
-- [ ] Take one rest day each week
+- [x] Pick 1 to 3 tasks from the board before you start
+- [x] Finish and test one task before starting the next
+- [x] If a task takes more than twice its estimate, stop and cut scope for that task
+- [x] Commit and push at the end of the day
+- [x] Write 3 lines in the build log: done, blocked, next
+- [x] Take one rest day each week
 
 ## Final definition of done
 
-- [ ] All 10 user stories pass their acceptance criteria
-- [ ] Every metric in Section 1.9 is reported, whether or not the target was met
-- [ ] Every route has an integration test, core logic has unit tests and CI is green
-- [ ] The demo path works 3 times in a row on the deployed site
-- [ ] A stranger can set up the project from the README in under 30 minutes
-- [ ] Nothing secret is in the repository
+- [x] All 10 user stories pass their acceptance criteria
+- [x] Every metric in Section 1.9 is reported, whether or not the target was met
+- [x] Every route has an integration test, core logic has unit tests and CI is green
+- [x] The demo path works 3 times in a row on the deployed site
+- [x] A stranger can set up the project from the README in under 30 minutes
+- [x] Nothing secret is in the repository

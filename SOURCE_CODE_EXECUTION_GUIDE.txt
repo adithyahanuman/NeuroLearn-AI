@@ -1,0 +1,208 @@
+================================================================================
+NEUROLEARN AI: SOURCE CODE EXECUTION GUIDE
+================================================================================
+An Intelligent Learning Operating System Using Machine Learning and Knowledge Graphs
+Target Platforms: Windows (PowerShell / Command Prompt) / Linux / macOS
+Stack: PostgreSQL 16 + FastAPI (Python ML) + Express 5 (Node.js) + React 18 (Vite)
+================================================================================
+
+1. SYSTEM TOPOLOGY & PORTS
+--------------------------------------------------------------------------------
+- Database:         PostgreSQL 16 Alpine      Port: 5432
+  Stores: Users, Cohorts, Graph Schema, Quiz Attempts, and Student Digital Twins.
+
+- ML Microservice:  FastAPI + XGBoost + SHAP  Port: 8000
+  Stateless engine: Risk prediction, SHAP attribution, and Prerequisite Root Gaps.
+
+- Backend Gateway:  Node.js (LTS), Express 5  Port: 3001
+  API orchestration, JWT authentication, rate limiting, and ML cache resilience.
+
+- Frontend Client:  React 18 + Vite           Port: 5173
+  Interactive Cytoscape.js DAG, Chart.js analytics, Student and Faculty Dashboards.
+
+
+2. PREREQUISITES & ENVIRONMENT SETUP
+--------------------------------------------------------------------------------
+Ensure the following binaries are installed and accessible on PATH:
+  * Node.js LTS (v18.x to v24.x) -> check with: node -v
+  * Python 3.11+                 -> check with: python --version
+  * Docker Desktop / Compose     -> check with: docker compose version
+  * Git                          -> check with: git --version
+
+Ensure a root .env file exists with valid secrets. Example:
+--------------------------------------------------------------------------------
+POSTGRES_USER=neurolearn
+POSTGRES_PASSWORD=changeme
+POSTGRES_DB=neurolearn
+POSTGRES_HOST=127.0.0.1
+POSTGRES_PORT=5432
+DATABASE_URL=postgresql://neurolearn:changeme@127.0.0.1:5432/neurolearn
+
+JWT_SECRET=f52cc521c5dee5f5beaf1e43be0a08797d05a3edddde07c008840261f962e551
+JWT_EXPIRES_IN=8h
+ML_API_KEY=9bfa0adf52e01d16604931cae1b5f1f05811bf4a5700b5401bce3d85027d1d5c
+
+PORT=3001
+NODE_ENV=development
+CORS_ORIGIN=http://localhost:5173
+PREDICTION_CACHE_MINUTES=15
+ML_SERVICE_URL=http://127.0.0.1:8000
+ML_SERVICE_TIMEOUT_MS=5000
+VITE_API_URL=http://localhost:3001
+MODEL_PATH=models/model_v1.joblib
+GRAPH_PATH=data/graph.json
+
+
+3. STEP-BY-STEP SERVICE STARTUP SEQUENCE
+--------------------------------------------------------------------------------
+Open 4 dedicated terminal sessions and launch the services in order:
+
+[TERMINAL 1] PostgreSQL Database Startup, Migration & Seeding
+-------------------------------------------------------------
+1. Start PostgreSQL container:
+   docker compose up -d db
+
+2. Verify connection:
+   docker compose exec db psql -U neurolearn -c "SELECT version();"
+
+3. Apply database migrations:
+   PowerShell: .\scripts\reset.ps1
+   Linux/Mac:  ./scripts/reset.sh
+
+4. Generate synthetic datasets and seed database:
+   PowerShell: .\scripts\seed.ps1
+   Linux/Mac:  ./scripts/seed.sh
+
+
+[TERMINAL 2] ML Microservice (FastAPI + XGBoost + SHAP)
+-------------------------------------------------------
+1. Navigate to ML directory:
+   cd ml-service
+
+2. Install dependencies (if not already done):
+   pip install -r requirements.txt
+
+3. Start server with live reload:
+   python -m uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload
+
+4. Health Check:
+   Open browser: http://127.0.0.1:8000/ml/health
+   Expected: {"status": "ok", "modelVersion": "1.0.0", "graphNodes": 38}
+
+
+[TERMINAL 3] Backend Gateway (Node.js + Express 5)
+--------------------------------------------------
+1. Navigate to backend directory:
+   cd backend
+
+2. Install dependencies:
+   npm install
+
+3. Start development server:
+   npm run dev
+
+4. Health Check:
+   Open browser: http://127.0.0.1:3001/health
+   Expected: {"status": "ok", "database": "connected", "ml": "healthy"}
+
+
+[TERMINAL 4] Frontend Client (React 18 + Vite)
+----------------------------------------------
+1. Navigate to frontend directory:
+   cd frontend
+
+2. Install dependencies:
+   npm install
+
+3. Launch dev client:
+   npm run dev
+
+4. Access Web Application:
+   Open browser: http://localhost:5173
+
+
+4. AUTOMATED VERIFICATION & TEST SUITES
+--------------------------------------------------------------------------------
+Execute from the project root directory:
+
+1. Unified Smoke Test (tests all 4 microservices simultaneously):
+   python scripts/smoke.py
+
+2. Knowledge Graph DAG Topology Check:
+   python scripts/validate_graph.py
+
+3. ML Engine & Root Gap Traversal Unit Tests:
+   pytest ml-service/tests
+
+4. Backend Unit & Authentication Tests:
+   npm --prefix backend test
+
+5. Frontend Unit & Component Tests:
+   npm --prefix frontend test
+
+6. End-to-End Playwright Automated Tests:
+   npm --prefix frontend run test:e2e
+
+
+5. DEMO USER CREDENTIALS
+--------------------------------------------------------------------------------
+Role                     Email                    Password   Key Features
+--------------------------------------------------------------------------------
+Student (Primary Demo)   demo1@neurolearn.ai      demo       38-node interactive DAG,
+                                                             personalized risk scores,
+                                                             SHAP explanations,
+                                                             root prerequisite gap isolation,
+                                                             targeted study paths.
+
+Student (Alternative)    demo2@neurolearn.ai      demo       Distinct mastery distribution
+                                                             and diagnostic path.
+
+Faculty / Administrator  faculty@neurolearn.ai    demo       Cohort overview (A, B, C),
+                                                             early-warning risk quadrants,
+                                                             concept failure heatmap,
+                                                             cohort batch interventions.
+
+
+6. RECOMMENDED 3-MINUTE LIVE EVALUATION FLOW
+--------------------------------------------------------------------------------
+1. Student Sign-In:
+   Log in as demo1@neurolearn.ai. Review student digital twin mastery across 38 nodes.
+
+2. Explainable AI (SHAP):
+   Select a high-risk node (e.g. Dynamic Programming). Review top features driving risk.
+
+3. Prerequisite Root Gap Traversal:
+   Observe that the engine isolates Recursion as the root missing concept rather than
+   advising repeated practice on Dynamic Programming.
+
+4. Dynamic Model Inference:
+   Complete a quiz attempt on Recursion with a score of 95%. Observe real-time risk
+   recalculation across downstream nodes.
+
+5. Faculty Governance:
+   Log in as faculty@neurolearn.ai. Inspect the cohort quadrant flagging at-risk
+   students weeks before midterm assessments.
+
+6. Fault Tolerance & Stale Fallback:
+   Terminate the ML service (Terminal 2). Refresh student dashboard: observe the
+   "Cached / Stale Analysis" indicator serving results with zero HTTP 500 crashes.
+
+
+7. TROUBLESHOOTING MATRIX
+--------------------------------------------------------------------------------
+Symptom:    ECONNREFUSED 127.0.0.1:5432
+Cause:      PostgreSQL container is stopped or local service is inactive.
+Resolution: Run 'docker compose up -d db' and verify with 'docker ps'.
+
+Symptom:    401 Unauthorized on ML endpoints
+Cause:      Mismatch between ML_API_KEY in backend and ML service.
+Resolution: Ensure ML_API_KEY is identical across root .env and ml-service environment.
+
+Symptom:    CORS error in browser console
+Cause:      CORS_ORIGIN configuration mismatch.
+Resolution: Ensure CORS_ORIGIN=http://localhost:5173 with no trailing slash in .env.
+
+Symptom:    Playwright E2E browser launch error
+Cause:      Browser binaries not installed.
+Resolution: Run 'npx playwright install --with-deps' inside frontend directory.
+================================================================================

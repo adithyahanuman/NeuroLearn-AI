@@ -56,25 +56,22 @@ class DigitalLearningTwin:
         self._initialize_priors()
 
     def _initialize_priors(self):
-        """Initializes raw mastery according to prerequisite structure."""
+        """Initializes raw mastery to 0.0 until attempts/marks are added."""
         topo = self.graph.get_topological_order()
         for cid in topo:
-            parents = self.graph.get_parents(cid)
-            if not parents:
-                self.raw_mastery[cid] = 0.40
-            else:
-                parent_m = [self.raw_mastery.get(p, 0.40) for p in parents]
-                self.raw_mastery[cid] = 0.20 + 0.40 * float(np.mean(parent_m))
+            self.raw_mastery[cid] = 0.0
             self.scores_history[cid] = []
             self.attempt_counts[cid] = 0
 
     def get_concept_prior(self, concept_id: int) -> float:
         """Computes base prior for concept using current raw mastery of prerequisites."""
+        if self.attempt_counts.get(concept_id, 0) == 0:
+            return 0.0
         parents = self.graph.get_parents(concept_id)
         if not parents:
             return 0.40
-        parent_m = [self.raw_mastery.get(p, 0.40) for p in parents]
-        return float(np.clip(0.20 + 0.40 * float(np.mean(parent_m)), 0.05, 0.95))
+        parent_m = [self.raw_mastery.get(p, 0.0) for p in parents]
+        return float(np.clip(0.20 + 0.40 * float(np.mean(parent_m)), 0.0, 0.95))
 
     def apply_attempt(self, attempt: Dict[str, Any]):
         """Processes one attempt and updates internal state."""
@@ -84,12 +81,14 @@ class DigitalLearningTwin:
         att_dt = parse_iso_dt(attempt.get("attempted_at", datetime.now(timezone.utc)))
 
         count = self.attempt_counts.get(cid, 0)
-        base_alpha = 0.35 if count < 3 else 0.25
-        alpha_scale = 0.70 if atype == "practice" else 1.00
-        alpha = base_alpha * alpha_scale
-
-        m_old = self.raw_mastery.get(cid, self.get_concept_prior(cid))
-        m_new = m_old + alpha * (score - m_old)
+        if count == 0:
+            m_new = score
+        else:
+            base_alpha = 0.35 if count < 3 else 0.25
+            alpha_scale = 0.70 if atype == "practice" else 1.00
+            alpha = base_alpha * alpha_scale
+            m_old = self.raw_mastery.get(cid, score)
+            m_new = m_old + alpha * (score - m_old)
         self.raw_mastery[cid] = float(np.clip(m_new, 0.0, 1.0))
 
         if cid not in self.scores_history:
@@ -148,22 +147,25 @@ class DigitalLearningTwin:
 
     def get_effective_mastery(self, concept_id: int, as_of: Optional[datetime] = None) -> float:
         """
-        Applies forgetting rule:
-        m_effective = prior + (m - prior) * exp(-0.015 * days_since_last_attempt).
+        Returns 0.0 if not yet attempted.
+        Applies forgetting rule for attempted concepts:
+        m_effective = m * exp(-0.015 * days_since_last_attempt).
         """
+        if self.attempt_counts.get(concept_id, 0) == 0:
+            return 0.0
+
         if as_of is None:
             as_of = datetime.now(timezone.utc)
         else:
             as_of = parse_iso_dt(as_of)
-        prior = self.get_concept_prior(concept_id)
-        m = self.raw_mastery.get(concept_id, prior)
+        m = self.raw_mastery.get(concept_id, 0.0)
         if concept_id not in self.last_attempt_dt:
-            return float(round(prior, 4))
+            return float(round(m, 4))
 
         last_dt = self.last_attempt_dt[concept_id]
         days_passed = max(0.0, (as_of - last_dt).total_seconds() / 86400.0)
         decay = math.exp(-0.015 * days_passed)
-        m_eff = prior + (m - prior) * decay
+        m_eff = m * decay
         return float(round(np.clip(m_eff, 0.0, 1.0), 4))
 
     def get_confidence(self, concept_id: int) -> str:

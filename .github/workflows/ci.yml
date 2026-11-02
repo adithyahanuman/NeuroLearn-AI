@@ -50,16 +50,92 @@ jobs:
       - name: Run ML unit tests
         run: pytest ml-service/tests -q
 
-  # backend-tests:
-  #   name: Backend tests
-  #   runs-on: ubuntu-latest
-  #   services:
-  #     postgres:
-  #       image: postgres:16-alpine
-  #       ...
+  # ── Phase 5: Backend service & integration tests ───────────────────────────
+  backend:
+    name: Backend tests & build
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: neurolearn
+          POSTGRES_PASSWORD: changeme
+          POSTGRES_DB: neurolearn
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - uses: actions/checkout@v4
 
-  # e2e:
-  #   name: Playwright end-to-end
-  #   runs-on: ubuntu-latest
-  #   needs: [ml-tests, backend-tests]
-  #   steps: ...
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: backend/package-lock.json
+
+      - name: Install backend dependencies
+        working-directory: backend
+        run: npm ci
+
+      - name: Typecheck backend
+        working-directory: backend
+        run: npm run typecheck
+
+      - name: Run backend tests
+        working-directory: backend
+        env:
+          DATABASE_URL: postgresql://neurolearn:changeme@127.0.0.1:5432/neurolearn
+          JWT_SECRET: test_jwt_secret_key_at_least_32_characters_long_for_ci
+          ML_API_KEY: test_ml_api_key_for_ci
+          ML_SERVICE_URL: http://127.0.0.1:8000
+          NODE_ENV: test
+        run: npm test
+
+      - name: Build backend
+        working-directory: backend
+        run: npm run build
+
+  # ── Phase 7-9: Frontend tests, build & Playwright E2E ────────────────────────
+  frontend:
+    name: Frontend unit & Playwright E2E tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install frontend dependencies
+        working-directory: frontend
+        run: npm ci
+
+      - name: Typecheck frontend
+        working-directory: frontend
+        run: npm run typecheck
+
+      - name: Run frontend unit & access control tests
+        working-directory: frontend
+        run: npm test
+
+      - name: Build frontend production bundle
+        working-directory: frontend
+        run: npm run build
+
+      - name: Install Playwright browsers
+        working-directory: frontend
+        run: npx playwright install --with-deps chromium
+
+      - name: Run Playwright E2E demo path
+        working-directory: frontend
+        run: npx playwright test
+
+

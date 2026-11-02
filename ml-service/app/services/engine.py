@@ -22,6 +22,7 @@ from app.services.graph import KnowledgeGraphService
 from app.services.twin import DigitalLearningTwin, parse_iso_dt
 from app.services.features import FEATURES, features_for
 from app.services.reasons import build_template_context, top_reasons
+from app.services.recommender import RecommenderService
 
 
 def resolve_file_path(candidates: List[Path], desc: str) -> Path:
@@ -59,6 +60,7 @@ class MLServiceEngine:
         graph_bytes = self.graph_path.read_bytes()
         self.graph_hash = hashlib.sha256(graph_bytes).hexdigest()
         self.graph_service = KnowledgeGraphService(str(self.graph_path))
+        self.recommender = RecommenderService(self.graph_service)
 
         # 2. Resolve features.json
         if features_path:
@@ -363,6 +365,17 @@ class MLServiceEngine:
         # Top global root gaps sorted descending by score
         sorted_global_root_gaps = sorted(global_root_gaps_map.values(), key=lambda x: x["score"], reverse=True)
 
+        # Step 7: Recommend remediation path if requested
+        t_rec_start = time.perf_counter()
+        path: List[Dict[str, Any]] = []
+        if include_path:
+            path = self.recommender.recommend_path(
+                twin=twin,
+                predictions=predictions,
+                as_of=dt,
+            )
+        t_rec_ms = (time.perf_counter() - t_rec_start) * 1000.0
+
         t_total_ms = (time.perf_counter() - t0) * 1000.0
 
         timings = {
@@ -371,6 +384,7 @@ class MLServiceEngine:
             "predict_ms": round(t_pred_ms, 2),
             "shap_ms": round(t_shap_ms, 2),
             "root_gap_ms": round(t_rg_ms, 2),
+            "recommend_ms": round(t_rec_ms, 2),
             "total_ms": round(t_total_ms, 2),
         }
 
@@ -379,9 +393,37 @@ class MLServiceEngine:
             "predictions": predictions,
             "twinSummary": twin_summary,
             "rootGaps": sorted_global_root_gaps,
-            "path": [],  # Empty path for Phase 4 as specified in PRD & checklist
+            "path": path,
             "timings": timings,
         }
+
+    def recommend(
+        self,
+        student_id: str,
+        attempts: List[Dict[str, Any]],
+        as_of: Optional[str] = None,
+        cohort_median_attempts: float = 1.0,
+    ) -> List[Dict[str, Any]]:
+        """
+        Generates an ordered personalized remediation path for student.
+        """
+        as_of_dt = parse_iso_dt(as_of) if as_of else None
+        twin, dt, _ = self.replay_twin(
+            student_id=student_id,
+            attempts=attempts,
+            as_of=as_of_dt,
+            cohort_median_7d=cohort_median_attempts,
+        )
+        cids = self.graph_service.get_topological_order()
+        features_df, _ = self.build_features_matrix(
+            twin=twin,
+            concept_ids=cids,
+            as_of=dt,
+            cohort_median_7d=cohort_median_attempts,
+        )
+        _, cal_probs = self.predict_batch(features_df)
+        preds = [{"conceptId": cid, "risk": float(cal_probs[idx])} for idx, cid in enumerate(cids)]
+        return self.recommender.recommend_path(twin=twin, predictions=preds, as_of=dt)
 
     def explain_concept(
         self,
@@ -447,3 +489,4 @@ def get_engine() -> MLServiceEngine:
 def set_engine(engine: Optional[MLServiceEngine]) -> None:
     global _engine_instance
     _engine_instance = engine
+

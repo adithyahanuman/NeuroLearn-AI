@@ -183,3 +183,4 @@ class ErrorResponse(BaseSchema):
     error: str
     code: str = "ERROR"
     detail: Optional[Any] = None
+
